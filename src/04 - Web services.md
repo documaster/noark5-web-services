@@ -190,6 +190,10 @@ Content-Type: application/json
       "fields": {
         string: string|date|number|boolean,
         ...
+      },
+      "links": {
+        string: number,
+        ...
       }
     },
     ...
@@ -211,6 +215,8 @@ Content-Type: application/json
   - version of the object
 - **fields**
   - all regular fields (string, date, number, boolean) of the object
+- **links**
+  - all any-to-one reference fields of the object (marked as Viewable in "02 - Object types.md")
 
 ## **upload**
 

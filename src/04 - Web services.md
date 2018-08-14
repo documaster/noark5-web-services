@@ -259,7 +259,14 @@ Content-Type: application/json
       "version": number,
       "fields": {
         string: string|date|number|boolean,
-        ...
+        ...,
+        "virksomhetsspesifikkeMetadata": {
+          "groupId": {
+            "fieldId": {"type": "string|long|double", "values": [string|long|double] },
+            ...
+          },
+          ...
+        }
       },
       "links": {
         string: number,
@@ -277,16 +284,27 @@ Content-Type: application/json
   - indicates if there are more results matching the query than those in the current page
 - **results**
   - objects in the current results page
-- **type**
-  - object type
-- **id**
-  - object ID
-- **version**
-  - version of the object
-- **fields**
-  - all regular fields (string, date, number, boolean) of the object
+  - **type**
+    - object type
+  - **id**
+    - object ID
+  - **version**
+    - version of the object
+  - **fields**
+    - all regular fields (string, date, number, boolean) of the object
+    - **virksomhetsspesifikkeMetadata** (optional)
+      - business-specific metadata defined for the object
+      - will be returned (if present) only for objects of type *Mappe*, *Saksmappe*, *Registrering*, and *Journalpost*
+      - **groupId**
+        - group ID placeholder (e.g. sf3298fyf-8f9oqhf3)
+      - **fieldId**
+        - field ID placeholder (e.g. sf3298fyf-8f9oqhf3)
+        - **type**
+          - field type (possible values are *string*, *long*, and *double*)
+        - **values**
+          - array of one or more field values of the particular type
 - **links**
-  - all any-to-one reference fields of the object (marked as Viewable in "02 - Object types.md")
+  - all any-to-one reference fields of the object
 
 ## **upload**
 
@@ -396,8 +414,15 @@ Content-Type: application/json
       "version": string,
       "fields": {
         string: string|number|date|boolean,
-        ...
-      }
+        ...,
+        "virksomhetsspesifikkeMetadata": {
+          "groupId": {
+            "fieldId": {"values": [string|long|double] },
+            ...
+          },
+          ...
+        }
+      },
     },
     ...
   ]
@@ -415,8 +440,21 @@ Content-Type: application/json
   - if you are creating a new object, this must be a temporary ID (e.g. a UUID) that will be mapped to the ID of the created object and returned in the response
 - **version**
   - object version when updating an existing object (may be used for optimistic locking internally)
-- **write** (optional)
+- **fields** (optional)
   - regular object fields (string, date, number, boolean) to write
+  - **virksomhetsspesifikkeMetadata** (optional)
+    - business-specific metadata to write for this object
+    - may be specified only for objects of type *Mappe*, *Saksmappe*, *Registrering*, and *Journalpost*
+    - **groupId**
+      - group ID placeholder which identifies the group that a business-specific metadata field belongs to
+      - **fieldId**
+        - field ID placeholder which identifies a business-specific metadata field
+        - **values**
+          - array of zero or more values to write to the specified business-specific metadata field
+
+**WARNING:** The **virksomhetsspesifikkeMetadata** field describes the desired state of the business-specific metadata for the object. This implies that:
+- groups, fields, and values included in **virksomhetsspesifikkeMetadata** will be added to the object;
+- existing groups, fields, and values not included in **virksomhetsspesifikkeMetadata** or included, but as empty arrays/objects, will be  removed from the object.
 
 **Response**
 

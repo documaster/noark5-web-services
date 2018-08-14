@@ -115,6 +115,76 @@ Content-Type: application/json
 - **description**
   - description of the code list value
 
+## **bsm-registry**
+
+Gets the definitions of all business-specific metadata fields available in the system, the definitions of a group of fields, or the definition of a single field.
+
+**Request**
+
+``` text
+GET /rms/api/public/noark5/v1/bsm-registry?groupId=GROUP_ID&fieldId=FIELD_ID HTTP/1.1
+Authorization: Bearer ACCESS_TOKEN
+Content-Type: application/json
+```
+
+###### Details
+
+- **groupId** (optional)
+  - the group ID of the field definitions to be fetched
+- **fieldId** (optional)
+  - the field ID of the field definition to be fetched
+
+If **groupId** and **fieldId** are both not specified, the response will contain all business-specific metadata field definitions.
+
+Both **groupId** and **fieldId** are strings comprised of lower-case letters, digits, and dashes that must begin with a letter and end with a letter or a digit.
+
+**Response**
+
+``` text
+Content-Type: application/json
+
+{
+  "results" : [
+    {
+      "groupId": string,
+      "groupName": string,
+      "groupDescription": string,
+      "fields": [
+        {
+          "fieldId": string,
+          "fieldName": string,
+          "fieldDescription": string,
+          "fieldType": string|long|double
+        },
+        ...
+      ]
+    },
+    ...
+  ]
+}
+```
+
+###### Details
+
+- **results**
+  - array of zero or more groups of business-specific metadata field definitions
+  - **groupId**
+   - system unique group ID (a string comprised of lower-case letters, digits, and dashes that must begin with a letter and end with a letter or a digit)
+  - **groupName**
+   - group name
+  - **groupDescription**
+   - group description
+  - **fields**
+   - array of zero or more business-specific metadata field definitions in the particular group
+   - **fieldId**
+     - system unique field ID (a string comprised of lower-case letters, digits, and dashes that must begin with a letter and end with a letter or a digit)
+   - **fieldName**
+     - field name
+   - **fieldDescription**
+     - field description
+   - **fieldType**
+     - field type (possible values are string, long, and double)
+
 ## **query**
 
 Queries for objects of a given type in the Noark 5 system.

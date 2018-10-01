@@ -10,7 +10,7 @@ This repository documents the Noark 5 web services in Documaster Archive 2.x.
 - [02 - Object types](src/02%20-%20Object%20types.md)
 - [03 - Code lists](src/03%20-%20Code%20lists.md)
 - [04 - Web services](/src/04%20-%20Web%20services.md)
-- [05 - Introduction](src/05%20-%20Query%20language.md)
+- [05 - Query language](src/05%20-%20Query%20language.md)
 
 
 ### Authentication and authorization

@@ -115,6 +115,76 @@ Content-Type: application/json
 - **description**
   - description of the code list value
 
+## **bsm-registry**
+
+Gets the definitions of all business-specific metadata fields available in the system, the definitions of a group of fields, or the definition of a single field.
+
+**Request**
+
+``` text
+GET /rms/api/public/noark5/v1/bsm-registry?groupId=GROUP_ID&fieldId=FIELD_ID HTTP/1.1
+Authorization: Bearer ACCESS_TOKEN
+Content-Type: application/json
+```
+
+###### Details
+
+- **groupId** (optional)
+  - the group ID of the field definitions to be fetched
+- **fieldId** (optional)
+  - the field ID of the field definition to be fetched
+
+If **groupId** and **fieldId** are both not specified, the response will contain all business-specific metadata field definitions.
+
+Both **groupId** and **fieldId** are strings comprised of lower-case letters, digits, and dashes that must begin with a letter and end with a letter or a digit.
+
+**Response**
+
+``` text
+Content-Type: application/json
+
+{
+  "results" : [
+    {
+      "groupId": string,
+      "groupName": string,
+      "groupDescription": string,
+      "fields": [
+        {
+          "fieldId": string,
+          "fieldName": string,
+          "fieldDescription": string,
+          "fieldType": string|long|double
+        },
+        ...
+      ]
+    },
+    ...
+  ]
+}
+```
+
+###### Details
+
+- **results**
+  - array of zero or more groups of business-specific metadata field definitions
+  - **groupId**
+   - system unique group ID (a string comprised of lower-case letters, digits, and dashes that must begin with a letter and end with a letter or a digit)
+  - **groupName**
+   - group name
+  - **groupDescription**
+   - group description
+  - **fields**
+   - array of zero or more business-specific metadata field definitions in the particular group
+   - **fieldId**
+     - system unique field ID (a string comprised of lower-case letters, digits, and dashes that must begin with a letter and end with a letter or a digit)
+   - **fieldName**
+     - field name
+   - **fieldDescription**
+     - field description
+   - **fieldType**
+     - field type (possible values are string, long, and double)
+
 ## **query**
 
 Queries for objects of a given type in the Noark 5 system.
@@ -189,7 +259,14 @@ Content-Type: application/json
       "version": number,
       "fields": {
         string: string|date|number|boolean,
-        ...
+        ...,
+        "virksomhetsspesifikkeMetadata": {
+          "groupId": {
+            "fieldId": {"type": "string|long|double", "values": [string|long|double] },
+            ...
+          },
+          ...
+        }
       },
       "links": {
         string: number,
@@ -207,16 +284,27 @@ Content-Type: application/json
   - indicates if there are more results matching the query than those in the current page
 - **results**
   - objects in the current results page
-- **type**
-  - object type
-- **id**
-  - object ID
-- **version**
-  - version of the object
-- **fields**
-  - all regular fields (string, date, number, boolean) of the object
+  - **type**
+    - object type
+  - **id**
+    - object ID
+  - **version**
+    - version of the object
+  - **fields**
+    - all regular fields (string, date, number, boolean) of the object
+    - **virksomhetsspesifikkeMetadata** (optional)
+      - business-specific metadata defined for the object
+      - will be returned (if present) only for objects of type *Mappe*, *Saksmappe*, *Registrering*, and *Journalpost*
+      - **groupId**
+        - group ID placeholder (e.g. sf3298fyf-8f9oqhf3)
+      - **fieldId**
+        - field ID placeholder (e.g. sf3298fyf-8f9oqhf3)
+        - **type**
+          - field type (possible values are *string*, *long*, and *double*)
+        - **values**
+          - array of one or more field values of the particular type
 - **links**
-  - all any-to-one reference fields of the object (marked as Viewable in "02 - Object types.md")
+  - all any-to-one reference fields of the object
 
 ## **upload**
 
@@ -326,8 +414,15 @@ Content-Type: application/json
       "version": string,
       "fields": {
         string: string|number|date|boolean,
-        ...
-      }
+        ...,
+        "virksomhetsspesifikkeMetadata": {
+          "groupId": {
+            "fieldId": {"values": [string|long|double] },
+            ...
+          },
+          ...
+        }
+      },
     },
     ...
   ]
@@ -345,8 +440,21 @@ Content-Type: application/json
   - if you are creating a new object, this must be a temporary ID (e.g. a UUID) that will be mapped to the ID of the created object and returned in the response
 - **version**
   - object version when updating an existing object (may be used for optimistic locking internally)
-- **write** (optional)
+- **fields** (optional)
   - regular object fields (string, date, number, boolean) to write
+  - **virksomhetsspesifikkeMetadata** (optional)
+    - business-specific metadata to write for this object
+    - may be specified only for objects of type *Mappe*, *Saksmappe*, *Registrering*, and *Journalpost*
+    - **groupId**
+      - group ID placeholder which identifies the group that a business-specific metadata field belongs to
+      - **fieldId**
+        - field ID placeholder which identifies a business-specific metadata field
+        - **values**
+          - array of zero or more values to write to the specified business-specific metadata field
+
+**WARNING:** The **virksomhetsspesifikkeMetadata** field describes the desired state of the business-specific metadata for the object. This implies that:
+- groups, fields, and values included in **virksomhetsspesifikkeMetadata** will be added to the object;
+- existing groups, fields, and values not included in **virksomhetsspesifikkeMetadata** or included, but as empty arrays/objects, will be  removed from the object.
 
 **Response**
 

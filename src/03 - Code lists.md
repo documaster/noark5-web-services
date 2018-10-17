@@ -135,3 +135,11 @@ No default values are present in this list and must be configured in the system 
 |      |      | &nbsp;  |
 
 No default values are present in this list and must be configured in the system before use.
+
+### ekspederingskanal
+
+| Code | Name | Comment |
+|:-----|:-----|:--------|
+|      |      | &nbsp;  |
+
+No default values are present in this list and must be configured in the system before use.

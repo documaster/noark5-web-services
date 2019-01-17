@@ -206,6 +206,97 @@ Authorization: Bearer ACCESS_TOKEN
 
 No content will be returned upon successful completion.
 
+## **bsm-registry/group/{groupId}/field/{fieldId}**
+
+### create and update
+
+Creates or updates a business-specific metadata field definition.
+
+**Request**
+
+``` text
+PUT /rms/api/public/noark5/v1/bsm-registry/group/{groupId}/field/{fieldId} HTTP/1.1
+Authorization: Bearer ACCESS_TOKEN
+Content-Type: application/json
+
+{
+  "fieldName": string,
+  "fieldDescription": string,
+  "fieldType": string|long|double,
+  "fieldValues": [string|long|double]
+}
+```
+
+###### Details
+
+- **groupId**
+  - group ID of the group definition in which to create or update the field definition
+- **fieldId**
+  - field ID of the field definition to be created or updated
+- **fieldName**
+  - field name
+- **fieldDescription**
+  - field description
+- **fieldType**
+  - field type (possible values are string, long, and double)
+- **fieldValues** (optional)
+  - if present, an array of zero or more values
+  - must be supplied only for fields that support pre-defined values (i.e. values assigned to the field upon its creation)
+
+Both **groupId** and **fieldId** are strings comprised of lower-case letters, digits, and dashes that must begin with a letter and end with a letter or a digit.
+
+**Response**
+
+``` text
+Content-type: application/json
+
+{
+  "fieldId": string,
+  "fieldName": string,
+  "fieldDescription": string,
+  "fieldType": string|long|double,
+  "fieldValues": [string|long|double]
+}
+```
+
+###### Details
+
+- **fieldId**
+  - system unique field ID of the created or updated field definition (a string comprised of lower-case letters, digits, and dashes that must begin with a letter and end with a letter or a digit)
+- **fieldName**
+  - field name
+- **fieldDescription**
+  - field description
+- **fieldType**
+  - field type (possible values are string, long, and double)
+- **fieldValues** (optional)
+  - if present, an array of zero or more values
+  - will be returned only for fields that support pre-defined values (i.e. values assigned to the field upon its creation)
+
+### delete
+
+Deletes a business-specific metadata field definition.
+
+**Request**
+
+``` text
+DELETE /rms/api/public/noark5/v1/bsm-registry/group/{groupId}/field/{fieldId} HTTP/1.1
+Authorization: Bearer ACCESS_TOKEN
+```
+
+###### Details
+
+- **groupId**
+  - group ID of the group definition from which to delete the field definition
+- **fieldId**
+  - field ID of the field definition to delete
+
+Both **groupId** and **fieldId** are strings comprised of lower-case letters, digits, and dashes that must begin with a letter and end with a letter or a digit.
+
+**Response**
+
+No content will be returned upon successful completion.
+
 # Other services
 
 Address:

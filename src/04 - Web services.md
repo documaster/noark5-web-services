@@ -41,6 +41,12 @@ Version 1 of the Noark 5 web services in Documaster are available under:
 
 **/rms/api/public/noark5/v1/{service-name}**
 
+The following naming convention is followed in order to group related services together:
+
+- **/rms/api/public/noark5/v1**
+  - **bsm-registry/{service-name}**
+    - Business-specific metadata management web services
+
 Note that all services must remain backwards-compatible even when their version is incremented.
 
 ## Dates encoding
@@ -48,7 +54,84 @@ Note that all services must remain backwards-compatible even when their version 
 - Dates must be encoded as **ISO 8601** strings prior to sending them to the web services.
 - Dates are returned by the web services as **ISO 8601** formatted strings.
 
-# Services
+# Business-specific metadata management web services
+
+Address:
+```
+https://{server}:{port}/rms/api/public/noark5/v1/bsm-registry
+```
+
+## **bsm-registry**
+
+Gets the definitions of all business-specific metadata fields available in the system, the definitions of a group of fields, or the definition of a single field.
+
+**Request**
+
+``` text
+GET /rms/api/public/noark5/v1/bsm-registry?groupId=GROUP_ID&fieldId=FIELD_ID HTTP/1.1
+Authorization: Bearer ACCESS_TOKEN
+Content-Type: application/json
+```
+
+###### Details
+
+- **groupId** (optional)
+  - the group ID of the field definitions to be fetched
+- **fieldId** (optional)
+  - the field ID of the field definition to be fetched
+
+If **groupId** and **fieldId** are both not specified, the response will contain all business-specific metadata field definitions.
+
+Both **groupId** and **fieldId** are strings comprised of lower-case letters, digits, and dashes that must begin with a letter and end with a letter or a digit.
+
+**Response**
+
+``` text
+Content-Type: application/json
+
+{
+  "results" : [
+    {
+      "groupId": string,
+      "groupName": string,
+      "groupDescription": string,
+      "fields": [
+        {
+          "fieldId": string,
+          "fieldName": string,
+          "fieldDescription": string,
+          "fieldType": string|long|double
+        },
+        ...
+      ]
+    },
+    ...
+  ]
+}
+```
+
+###### Details
+
+- **results**
+  - array of zero or more groups of business-specific metadata field definitions
+  - **groupId**
+    - system unique group ID (a string comprised of lower-case letters, digits, and dashes that must begin with a letter and end with a letter or a digit)
+  - **groupName**
+    - group name
+  - **groupDescription**
+    - group description
+  - **fields**
+    - array of zero or more business-specific metadata field definitions in the particular group
+    - **fieldId**
+      - system unique field ID (a string comprised of lower-case letters, digits, and dashes that must begin with a letter and end with a letter or a digit)
+    - **fieldName**
+      - field name
+    - **fieldDescription**
+      - field description
+    - **fieldType**
+      - field type (possible values are string, long, and double)
+
+# Other services
 
 Address:
 ```
@@ -114,76 +197,6 @@ Content-Type: application/json
   - user-friendly name of the code list value
 - **description**
   - description of the code list value
-
-## **bsm-registry**
-
-Gets the definitions of all business-specific metadata fields available in the system, the definitions of a group of fields, or the definition of a single field.
-
-**Request**
-
-``` text
-GET /rms/api/public/noark5/v1/bsm-registry?groupId=GROUP_ID&fieldId=FIELD_ID HTTP/1.1
-Authorization: Bearer ACCESS_TOKEN
-Content-Type: application/json
-```
-
-###### Details
-
-- **groupId** (optional)
-  - the group ID of the field definitions to be fetched
-- **fieldId** (optional)
-  - the field ID of the field definition to be fetched
-
-If **groupId** and **fieldId** are both not specified, the response will contain all business-specific metadata field definitions.
-
-Both **groupId** and **fieldId** are strings comprised of lower-case letters, digits, and dashes that must begin with a letter and end with a letter or a digit.
-
-**Response**
-
-``` text
-Content-Type: application/json
-
-{
-  "results" : [
-    {
-      "groupId": string,
-      "groupName": string,
-      "groupDescription": string,
-      "fields": [
-        {
-          "fieldId": string,
-          "fieldName": string,
-          "fieldDescription": string,
-          "fieldType": string|long|double
-        },
-        ...
-      ]
-    },
-    ...
-  ]
-}
-```
-
-###### Details
-
-- **results**
-  - array of zero or more groups of business-specific metadata field definitions
-  - **groupId**
-   - system unique group ID (a string comprised of lower-case letters, digits, and dashes that must begin with a letter and end with a letter or a digit)
-  - **groupName**
-   - group name
-  - **groupDescription**
-   - group description
-  - **fields**
-   - array of zero or more business-specific metadata field definitions in the particular group
-   - **fieldId**
-     - system unique field ID (a string comprised of lower-case letters, digits, and dashes that must begin with a letter and end with a letter or a digit)
-   - **fieldName**
-     - field name
-   - **fieldDescription**
-     - field description
-   - **fieldType**
-     - field type (possible values are string, long, and double)
 
 ## **query**
 

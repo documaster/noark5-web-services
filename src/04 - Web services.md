@@ -100,7 +100,8 @@ Content-Type: application/json
           "fieldId": string,
           "fieldName": string,
           "fieldDescription": string,
-          "fieldType": string|long|double
+          "fieldType": string|long|double,
+          "fieldValues": [string|long|double]
         },
         ...
       ]
@@ -130,6 +131,9 @@ Content-Type: application/json
       - field description
     - **fieldType**
       - field type (possible values are string, long, and double)
+    - **fieldValues** (optional)
+      - if present, an array of zero or more values
+      - will be returned only for fields that support pre-defined values (i.e. values assigned to the field upon its creation)
 
 # Other services
 

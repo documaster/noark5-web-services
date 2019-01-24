@@ -22,6 +22,8 @@ The following table lists the HTTP status codes used by the web services.
 | Status code                | Definition                                                                                               | Example                                                         |
 |:---------------------------|:---------------------------------------------------------------------------------------------------------|:----------------------------------------------------------------|
 | 200 OK                     | The request was successful.                                                                              | HTTP/1.1 200 OK                                                 |
+| 201 Created                | The request was fulfilled and resulted in a new resource being created.                                  | HTTP/1.1 201 Created                                            |
+| 204 No Content             | The request was successful, but there is no content to send in the response payload body.                | HTTP/1.1 204 No Content                                         |
 | 400 Bad Request            | The syntax of the request was invalid.                                                                   | HTTP/1.1 400 Bad Request                                        |
 | 415 Unsupported Media Type | The payload format requested by the client is not supported by the server.                               | HTTP/1.1 415 Unsupported Media Type                             |
 | 401 Unauthorized           | The request was denied due to an invalid or missing access token.                                        | <p>HTTP/1.1 401 Unauthorized</p><p>WWW-Authenticate: Bearer</p> |
@@ -41,6 +43,12 @@ Version 1 of the Noark 5 web services in Documaster are available under:
 
 **/rms/api/public/noark5/v1/{service-name}**
 
+The following naming convention is followed in order to group related services together:
+
+- **/rms/api/public/noark5/v1**
+  - **bsm-registry/{service-name}**
+    - Business-specific metadata management web services
+
 Note that all services must remain backwards-compatible even when their version is incremented.
 
 ## Dates encoding
@@ -48,7 +56,248 @@ Note that all services must remain backwards-compatible even when their version 
 - Dates must be encoded as **ISO 8601** strings prior to sending them to the web services.
 - Dates are returned by the web services as **ISO 8601** formatted strings.
 
-# Services
+# Business-specific metadata management web services
+
+Address:
+```
+https://{server}:{port}/rms/api/public/noark5/v1/bsm-registry
+```
+
+## **bsm-registry**
+
+Gets the definitions of all business-specific metadata fields available in the system, the definitions of a group of fields, or the definition of a single field.
+
+**Request**
+
+``` text
+GET /rms/api/public/noark5/v1/bsm-registry?groupId=GROUP_ID&fieldId=FIELD_ID HTTP/1.1
+Authorization: Bearer ACCESS_TOKEN
+Content-Type: application/json
+```
+
+###### Details
+
+- **groupId** (optional)
+  - the group ID of the field definitions to be fetched
+- **fieldId** (optional)
+  - the field ID of the field definition to be fetched
+
+If **groupId** and **fieldId** are both not specified, the response will contain all business-specific metadata field definitions.
+
+Both **groupId** and **fieldId** are strings comprised of lower-case letters, digits, and dashes that must begin with a letter and end with a letter or a digit.
+
+**Response**
+
+``` text
+Content-Type: application/json
+
+{
+  "results" : [
+    {
+      "groupId": string,
+      "groupName": string,
+      "groupDescription": string,
+      "fields": [
+        {
+          "fieldId": string,
+          "fieldName": string,
+          "fieldDescription": string,
+          "fieldType": string|long|double,
+          "fieldValues": [string|long|double]
+        },
+        ...
+      ]
+    },
+    ...
+  ]
+}
+```
+
+###### Details
+
+- **results**
+  - array of zero or more groups of business-specific metadata field definitions
+  - **groupId**
+    - system unique group ID (a string comprised of lower-case letters, digits, and dashes that must begin with a letter and end with a letter or a digit)
+  - **groupName**
+    - group name
+  - **groupDescription**
+    - group description
+  - **fields**
+    - array of zero or more business-specific metadata field definitions in the particular group
+    - **fieldId**
+      - system unique field ID (a string comprised of lower-case letters, digits, and dashes that must begin with a letter and end with a letter or a digit)
+    - **fieldName**
+      - field name
+    - **fieldDescription**
+      - field description
+    - **fieldType**
+      - field type (possible values are string, long, and double)
+    - **fieldValues** (optional)
+      - if present, an array of zero or more values
+      - will be returned only for fields that support pre-defined values (i.e. values assigned to the field upon its creation)
+
+## **bsm-registry/group/{groupId}**
+
+### create and update
+
+Creates or updates a business-specific metadata group definition.
+
+**Request**
+
+``` text
+PUT /rms/api/public/noark5/v1/bsm-registry/group/{groupId} HTTP/1.1
+Authorization: Bearer ACCESS_TOKEN
+Content-Type: application/json
+
+{
+  "groupName": string,
+  "groupDescription": string
+}
+```
+
+###### Details
+
+- **groupId**
+  - group ID of the group definition to be created or updated (a string comprised of lower-case letters, digits, and dashes that must begin with a letter and end with a letter or a digit)
+- **groupName**
+  - group name
+- **groupDescription**
+  - group description
+
+**Response**
+
+``` text
+Content-type: application/json
+
+{
+  "groupId": string,
+  "groupName": string,
+  "groupDescription": string
+}
+```
+
+###### Details
+
+- **groupId**
+  - system unique group ID of the created or updated group definition (a string comprised of lower-case letters, digits, and dashes that must begin with a letter and end with a letter or a digit)
+- **groupName**
+  - group name
+- **groupDescription**
+  - group description
+
+### delete
+
+Deletes a business-specific metadata group definition.
+
+**Request**
+
+``` text
+DELETE /rms/api/public/noark5/v1/bsm-registry/group/{groupId} HTTP/1.1
+Authorization: Bearer ACCESS_TOKEN
+```
+
+###### Details
+
+- **groupId**
+  - group ID of the group definition to be deleted (a string comprised of lower-case letters, digits, and dashes that must begin with a letter and end with a letter or a digit)
+
+**Response**
+
+No content will be returned upon successful completion.
+
+## **bsm-registry/group/{groupId}/field/{fieldId}**
+
+### create and update
+
+Creates or updates a business-specific metadata field definition.
+
+**Request**
+
+``` text
+PUT /rms/api/public/noark5/v1/bsm-registry/group/{groupId}/field/{fieldId} HTTP/1.1
+Authorization: Bearer ACCESS_TOKEN
+Content-Type: application/json
+
+{
+  "fieldName": string,
+  "fieldDescription": string,
+  "fieldType": string|long|double,
+  "fieldValues": [string|long|double]
+}
+```
+
+###### Details
+
+- **groupId**
+  - group ID of the group definition in which to create or update the field definition
+- **fieldId**
+  - field ID of the field definition to be created or updated
+- **fieldName**
+  - field name
+- **fieldDescription**
+  - field description
+- **fieldType**
+  - field type (possible values are string, long, and double)
+- **fieldValues** (optional)
+  - if present, an array of zero or more values
+  - must be supplied only for fields that support pre-defined values (i.e. values assigned to the field upon its creation)
+
+Both **groupId** and **fieldId** are strings comprised of lower-case letters, digits, and dashes that must begin with a letter and end with a letter or a digit.
+
+**Response**
+
+``` text
+Content-type: application/json
+
+{
+  "fieldId": string,
+  "fieldName": string,
+  "fieldDescription": string,
+  "fieldType": string|long|double,
+  "fieldValues": [string|long|double]
+}
+```
+
+###### Details
+
+- **fieldId**
+  - system unique field ID of the created or updated field definition (a string comprised of lower-case letters, digits, and dashes that must begin with a letter and end with a letter or a digit)
+- **fieldName**
+  - field name
+- **fieldDescription**
+  - field description
+- **fieldType**
+  - field type (possible values are string, long, and double)
+- **fieldValues** (optional)
+  - if present, an array of zero or more values
+  - will be returned only for fields that support pre-defined values (i.e. values assigned to the field upon its creation)
+
+### delete
+
+Deletes a business-specific metadata field definition.
+
+**Request**
+
+``` text
+DELETE /rms/api/public/noark5/v1/bsm-registry/group/{groupId}/field/{fieldId} HTTP/1.1
+Authorization: Bearer ACCESS_TOKEN
+```
+
+###### Details
+
+- **groupId**
+  - group ID of the group definition from which to delete the field definition
+- **fieldId**
+  - field ID of the field definition to delete
+
+Both **groupId** and **fieldId** are strings comprised of lower-case letters, digits, and dashes that must begin with a letter and end with a letter or a digit.
+
+**Response**
+
+No content will be returned upon successful completion.
+
+# Other services
 
 Address:
 ```
@@ -114,76 +363,6 @@ Content-Type: application/json
   - user-friendly name of the code list value
 - **description**
   - description of the code list value
-
-## **bsm-registry**
-
-Gets the definitions of all business-specific metadata fields available in the system, the definitions of a group of fields, or the definition of a single field.
-
-**Request**
-
-``` text
-GET /rms/api/public/noark5/v1/bsm-registry?groupId=GROUP_ID&fieldId=FIELD_ID HTTP/1.1
-Authorization: Bearer ACCESS_TOKEN
-Content-Type: application/json
-```
-
-###### Details
-
-- **groupId** (optional)
-  - the group ID of the field definitions to be fetched
-- **fieldId** (optional)
-  - the field ID of the field definition to be fetched
-
-If **groupId** and **fieldId** are both not specified, the response will contain all business-specific metadata field definitions.
-
-Both **groupId** and **fieldId** are strings comprised of lower-case letters, digits, and dashes that must begin with a letter and end with a letter or a digit.
-
-**Response**
-
-``` text
-Content-Type: application/json
-
-{
-  "results" : [
-    {
-      "groupId": string,
-      "groupName": string,
-      "groupDescription": string,
-      "fields": [
-        {
-          "fieldId": string,
-          "fieldName": string,
-          "fieldDescription": string,
-          "fieldType": string|long|double
-        },
-        ...
-      ]
-    },
-    ...
-  ]
-}
-```
-
-###### Details
-
-- **results**
-  - array of zero or more groups of business-specific metadata field definitions
-  - **groupId**
-   - system unique group ID (a string comprised of lower-case letters, digits, and dashes that must begin with a letter and end with a letter or a digit)
-  - **groupName**
-   - group name
-  - **groupDescription**
-   - group description
-  - **fields**
-   - array of zero or more business-specific metadata field definitions in the particular group
-   - **fieldId**
-     - system unique field ID (a string comprised of lower-case letters, digits, and dashes that must begin with a letter and end with a letter or a digit)
-   - **fieldName**
-     - field name
-   - **fieldDescription**
-     - field description
-   - **fieldType**
-     - field type (possible values are string, long, and double)
 
 ## **query**
 

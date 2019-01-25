@@ -61,6 +61,42 @@ No default values are present in this list and must be configured in the system 
 | S    | Saksbehandler har registrert innkommet dokument |         |
 | R    | Reservert dokument                              | &nbsp;  |
 
+### moeteregistreringstype (M085)
+
+| Code | Name                                                                        | Comment |
+|:-----|:----------------------------------------------------------------------------|:--------|
+| D    | Vedtak i møtesak                                                            |         |
+| V    | Vedlegg til møtesak                                                         |         |
+| SL   | Saksliste                                                                   |         |
+| M    | Møtereferat                                                                 |         |
+| B    | Møtebok                                                                     |         |
+| N    | Notat til politisk utvalg                                                   |         |
+| I    | Møteinnkalling                                                              |         |
+| O    | Oversikt over deltakere, representanter og medlemmer i utvalg, råd og møter |         |
+| MP   | Møteprotokoll                                                               |         |
+| SP   | Saksprotokoll                                                               |         |
+| SF   | Saksframlegg                                                                | &nbsp;  |
+
+### moetesakstype (M088)
+
+| Code | Name             | Comment |
+|:-----|:-----------------|:--------|
+| P    | Politisk sak     |         |
+| R    | Referatsak       |         |
+| U    | Uregistrert sak  |         |
+| D    | Delegert møtesak |         |
+| I    | Interpellasjon   | &nbsp;  |
+
+
+### moeteregistreringsstatus (M055)
+
+| Code | Name | Comment |
+|:-----|:-----|:--------|
+|      |      | &nbsp;  |
+
+No default values are present in this list and must be configured in the system before use.
+
+
 ### dokumentstatus (M054)
 
 | Code | Name                           | Comment |

@@ -170,6 +170,16 @@ No default values are present in this list and must be configured in the system 
 
 No default values are present in this list and must be configured in the system before use.
 
+### avskrivningsmaate (M619)
+
+| Code | Name                  | Comment |
+|:-----|:----------------------|:--------|
+| BU   | Besvart med brev      |         |
+| BE   | Besvart med e-post    |         |
+| TLF  | Besvart på telefon    |         |
+| TE   | Tatt til etterretning |         |
+| TO   | Tatt til orientering  | &nbsp;  |
+
 ## Documaster-specific code lists
 
 ### administrativEnhet (M583)

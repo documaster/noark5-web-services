@@ -473,7 +473,7 @@ Content-Type: application/json
     - all regular fields (string, date, number, boolean) of the object
     - **virksomhetsspesifikkeMetadata** (optional)
       - business-specific metadata defined for the object
-      - will be returned (if present) only for objects of type *Mappe*, *Saksmappe*, *Registrering*, and *Journalpost*
+      - will be returned (if present) only for objects of type *Mappe*, *Moetemappe*, *Saksmappe*, *Registrering*, *Moeteregistrering*, and *Journalpost*
       - **groupId**
         - group ID placeholder (e.g. sf3298fyf-8f9oqhf3)
       - **fieldId**
@@ -623,7 +623,7 @@ Content-Type: application/json
   - regular object fields (string, date, number, boolean) to write
   - **virksomhetsspesifikkeMetadata** (optional)
     - business-specific metadata to write for this object
-    - may be specified only for objects of type *Mappe*, *Saksmappe*, *Registrering*, and *Journalpost*
+    - may be specified only for objects of type *Mappe*, *Moetemappe*, *Saksmappe*, *Registrering*, *Moeteregistrering*, and *Journalpost*
     - **groupId**
       - group ID placeholder which identifies the group that a business-specific metadata field belongs to
       - **fieldId**

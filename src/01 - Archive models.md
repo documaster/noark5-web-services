@@ -31,3 +31,10 @@ By definition, Noark 5 systems must support at least one of these models and may
 - Classification is mandatory
 
 ![Archive model 3](img/archive-model-three.png)
+
+## Archive model 4
+
+- Suitable for archiving meeting and board handling data in meeting folders along with other documents
+- Classification is optional but strongly recommended
+
+![Archive model 4](img/archive-model-four.png)

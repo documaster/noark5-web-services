@@ -46,6 +46,8 @@ Version 1 of the Noark 5 web services in Documaster are available under:
 The following naming convention is followed in order to group related services together:
 
 - **/rms/api/public/noark5/v1**
+  - **code-lists/{service-name}**
+    - Code list management web services
   - **bsm-registry/{service-name}**
     - Business-specific metadata management web services
 
@@ -55,6 +57,157 @@ Note that all services must remain backwards-compatible even when their version 
 
 - Dates must be encoded as **ISO 8601** strings prior to sending them to the web services.
 - Dates are returned by the web services as **ISO 8601** formatted strings.
+
+# Code list management web services
+
+Address:
+```
+https://{server}:{port}/rms/api/public/noark5/v1/code-lists
+```
+
+Special note: All code list values have the same base fields: *code*, *name*, and *description*. Certain code list values, however, also support additional fields. They are described below.
+
+The *skjerming* values have the following extra field:
+- **authority**
+  - authority of the code list value
+
+## **code-lists**
+
+Gets all code lists supported by the system, the code lists for a given object type, or the code list for a specific field in a given type.
+
+**Request**
+
+``` text
+GET /rms/api/public/noark5/v1/code-lists?type=OBJECT_TYPE&field=FIELD_NAME HTTP/1.1
+Authorization: Bearer ACCESS_TOKEN
+Content-Type: application/json
+```
+
+###### Details
+
+- **type** (optional)
+  - type of object to fetch the code lists for
+- **field** (optional)
+  - field in the specified type to fetch the code list for
+
+If **type** and **field** are both not specified, the response will contain all code lists supported by the system.
+
+**Response**
+
+``` text
+Content-Type: application/json
+
+{
+  "results": [
+    {
+      "type": string,
+      "field": string,
+      "values": [
+        {
+          "code": string,
+          "name": string,
+          "description": string,
+          ...
+        },
+        ...
+      ]
+    },
+    ...
+  ]
+}
+```
+
+###### Details
+
+- **results**
+  - array of one or more code lists
+  - **type**
+    - object type that this code list applies to
+  - **field**
+    - field in the object type that this code list applies to
+    - **code**
+      - unique identifier of the code list value in the particular code list
+    - **name**
+      - user-friendly name of the code list value
+    - **description**
+      - description of the code list value
+
+## **code-lists/{listId}/{code}**
+
+### create and update
+
+Creates or updates a code list value.
+
+**Request**
+
+``` text
+PUT /rms/api/public/noark5/v1/code-lists/{listId}/{code} HTTP/1.1
+Authorization: Bearer ACCESS_TOKEN
+Content-Type: application/json
+
+{
+  "name": string,
+  "description": string,
+  ...
+}
+```
+
+###### Details
+
+- **listId**
+  - ID of the code list in which to create or update the code list value
+  - corresponds to a code list as described in - [03 - Code lists](03%20-%20Code%20lists.md)
+- **code**
+  - unique identifier of the code list value in the particular code list
+- **name**
+  - user-friendly name of the code list value
+- **description**
+  - description of the code list value
+
+**Response**
+
+``` text
+Content-type: application/json
+
+{
+  "code": string,
+  "name": string,
+  "description": string,
+  ...
+}
+```
+
+###### Details
+
+- **code**
+  - unique identifier of the code list value in the particular code list
+- **name**
+  - user-friendly name of the code list value
+- **description**
+  - description of the code list value
+
+### delete
+
+Deletes a code list value.
+
+**Request**
+
+``` text
+DELETE /rms/api/public/noark5/v1/code-lists/{listId}/{code} HTTP/1.1
+Authorization: Bearer ACCESS_TOKEN
+```
+
+###### Details
+
+- **listId**
+  - ID of the code list from which to delete the code list value
+  - corresponds to a code list as described in - [03 - Code lists](03%20-%20Code%20lists.md)
+- **code**
+  - unique identifier of the code list value in the particular code list
+
+**Response**
+
+No content will be returned upon successful completion.
 
 # Business-specific metadata management web services
 
@@ -303,66 +456,6 @@ Address:
 ```
 https://{server}:{port}/rms/api/public/noark5/v1
 ```
-
-## **code-lists**
-
-Gets all code lists supported by the system, the code lists for a given object type, or the code list for a specific field in a given type.
-
-**Request**
-
-``` text
-GET /rms/api/public/noark5/v1/code-lists?type=OBJECT_TYPE&field=FIELD_NAME HTTP/1.1
-Authorization: Bearer ACCESS_TOKEN
-Content-Type: application/json
-```
-
-###### Details
-
-- **type** (optional)
-  - type of object to fetch the code lists for
-- **field** (optional)
-  - field in the specified type to fetch the code list for
-
-If **type** and **field** are both not specified, the response will contain all code lists supported by the system.
-
-**Response**
-
-``` text
-Content-Type: application/json
-
-{
-  "results": [
-    {
-      "type": string,
-      "field": string,
-      "values": [
-        {
-          "code": string,
-          "name": string,
-          "description": string
-        },
-        ...
-      ]
-    },
-    ...
-  ]
-}
-```
-
-###### Details
-
-- **results**
-  - array of one or more code lists
-- **type**
-  - object type that this code list applies to
-- **field**
-  - field in the object type that this code list applies to
-- **code**
-  - code or short name of the code list value
-- **name**
-  - user-friendly name of the code list value
-- **description**
-  - description of the code list value
 
 ## **query**
 

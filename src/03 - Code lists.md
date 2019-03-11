@@ -130,6 +130,14 @@ No default values are present in this list and must be configured in the system 
 | IM   | Intern mottaker     |         |
 | IK   | Intern kopimottaker | &nbsp;  |
 
+### flytStatus (M663)
+
+| Code | Name                                            | Comment |
+|:-----|:------------------------------------------------|:--------|
+| G    | Godkjent                                        |         |
+| I    | Ikke godkjent                                   |         |
+| S    | Sendt tilbake til saksbehandler med kommentarer | &nbsp;  |
+
 ### tilknyttetRegistreringSom (M217)
 
 | Code | Name          | Comment |

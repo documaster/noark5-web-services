@@ -66,12 +66,12 @@ No default values are present in this list and must be configured in the system 
 | Code | Name                                                                        | Comment |
 |:-----|:----------------------------------------------------------------------------|:--------|
 | D    | Vedtak i møtesak                                                            |         |
-| V    | Vedlegg til møtesak                                                         |         |
+| VL   | Vedlegg til møtesak                                                         |         |
 | SL   | Saksliste                                                                   |         |
 | M    | Møtereferat                                                                 |         |
 | B    | Møtebok                                                                     |         |
 | N    | Notat til politisk utvalg                                                   |         |
-| I    | Møteinnkalling                                                              |         |
+| MI   | Møteinnkalling                                                              |         |
 | O    | Oversikt over deltakere, representanter og medlemmer i utvalg, råd og møter |         |
 | MP   | Møteprotokoll                                                               |         |
 | SP   | Saksprotokoll                                                               |         |
@@ -81,11 +81,11 @@ No default values are present in this list and must be configured in the system 
 
 | Code | Name             | Comment |
 |:-----|:-----------------|:--------|
-| P    | Politisk sak     |         |
-| R    | Referatsak       |         |
+| PS   | Politisk sak     |         |
+| RS   | Referatsak       |         |
 | U    | Uregistrert sak  |         |
-| D    | Delegert møtesak |         |
-| I    | Interpellasjon   | &nbsp;  |
+| DS   | Delegert møtesak |         |
+| FO   | Interpellasjon   | &nbsp;  |
 
 
 ### moeteregistreringsstatus (M055)

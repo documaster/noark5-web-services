@@ -1,27 +1,14 @@
 Introduction
 -------
 
-## Goals
+## Authentication and authorization
 
-The goals of this specification are to:
+Before calling the web services, you need to obtain an access token from the OpenID Connect Identity Provider (IDP) used by the Documaster instance. Documaster supports several IDPs including Documaster IDP and Azure AD. More information about Documaster IDP can be found [here](https://github.com/documaster/idp-web-services). Azure AD specifics are documented [here](https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-protocols-oidc).
 
-- Define a minimal set of web services that cover the most popular requirements for integrating with Noark 5 systems
-- Take into account the fact that the target users of the web services are developers and that they cannot be expected to know all intricacies of the Noark 5 standard
-- Allow simple web services clients to be written in various languages to help developers write robust integrations quickly
-- Not attempt to standardize things that cannot be standardized by nature
+## Integrations in C# #
 
-The specification is based on:
+The easiest way to integrate with Documaster is to use the [Documaster C# client](https://www.nuget.org/packages?q=documaster). Code examples can be found [here](https://github.com/documaster/ws-client-n5-csharp-samples).
 
-- The [Noark 5 version 4 standard](https://www.arkivverket.no/forvaltning-og-utvikling/noark-standarden/noark-5/noark5-standarden) and the [Noark 5 extraction schemas](https://www.arkivverket.no/forvaltning-og-utvikling/noark-standarden/noark-5/xml-skjemaer-for-deponering-og-avlevering-fra-noark-5).
-- The [official attempt at defining standard Noark 5 web services](https://www.arkivverket.no/forvaltning-og-utvikling/noark-standarden/noark-5/tjenestegrensesnitt-noark5)
+## Integrations in Java
 
-## Guiding principles
-
-- Design a Noark 5 web services data model that is easy to understand and hides some of the complexities of Noark 5
-- Allow the metadata model to be updated in a backwards-compatible way:
-  - Add new object types
-  - Add new fields
-- Standardize the API for storing and retrieving business-specific metadata (virksomhetsspesifikke metadata)
-- Leave authentication and authorization out of the specification
-- Allow integration code to be reused while keeping in mind that systems are different and integration code may not work with a new system perfectly without minor modifications
-- Allow all Noark 5 vendors to implement these web services
+The easiest way to integrate with Documaster is the use the Documaster Java Client. More information about this will be provided soon.

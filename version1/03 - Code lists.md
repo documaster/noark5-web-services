@@ -3,13 +3,13 @@ Code lists
 
 ## Overview
 
-Several fields in the Noark 5 metamodel can only contain one of a predefined set of values, i.e. a value from a *code list*.
+Several fields in the Documaster archive models (which are based on the Noark 5 metamodel) can only contain one of a predefined set of values, i.e. a value from a so-called *code list*. A code list value consists of a **code** and a corresponding **user-friendly name**. This section describes the code lists present in Documaster.
 
-This section defines a set of standard code lists that every Noark 5 system must support, as well as code lists that are specific to Documaster. Systems are allowed to add new values to any code list, and to add new code lists. However, systems are not allowed to change the meaning of any of the specified codes, as that would have a strong negative impact on interoperability. For the same reason, it is discouraged to remove any of the specified codes, but this is allowed if the system does not support that code (or any system-specific equivalent). Note that code lists for fields that are required (not null) must have at least one entry.
+Integrating systems may add new values to any code list but it is **strongly discouraged** to remove any of the default values as that would break Noark 5 compliance. Note also that code lists for fields that are required (not null) must have at least one entry prior to end-users using Documaster.
 
 Use the **code-lists** web service to check if the values that a particular field can take are restricted by a code list.
 
-## Noark 5 code lists
+## Code lists
 
 ### arkivstatus (M050)
 
@@ -179,8 +179,6 @@ No default values are present in this list and must be configured in the system 
 | TLF  | Besvart på telefon    |         |
 | TE   | Tatt til etterretning |         |
 | TO   | Tatt til orientering  | &nbsp;  |
-
-## Documaster-specific code lists
 
 ### administrativEnhet (M583)
 

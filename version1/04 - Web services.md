@@ -508,6 +508,130 @@ Content-Type: */*
 Binary content
 ```
 
+# Full text web services
+
+Address:
+```
+https://{server}:{port}/rms/api/public/noark5/v1/full-text
+```
+
+Perform operations on index documents in a search index.
+- An **index document** is a set of fields and their corresponding values stored in a search index.
+- Each index document has a **doctype** which corresponds to a set of Noark 5 fields stored in the index document.
+- The supported doctypes and the object types (or fields) included in them are:
+
+| doctype            | Included object types                                                                                                                                                                                                                                                                                                                                                                    |
+|:-------------------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Tekst              | Tekst (document text), Dokumentversjon (latest only), Dokument, AbstraktRegistrering (and its Noekkelord, Korrespondansepart, virksomhetsspesifikkeMetadata, secondary Klasse, and secondary Klassifikasjonssystem), AbstraktMappe (and its Noekkelord, virksomhetsspesifikkeMetadata, primary Klasse, secondary Klasse, secondary Klassifikasjonssystem, Sakspart, Arkivdel, and Arkiv) |
+| Korrespondansepart | Korrespondansepart                                                                                                                                                                                                                                                                                                                                                                       |
+| Registrering       | AbstraktRegistrering (and its Noekkelord, Korrespondansepart, virksomhetsspesifikkeMetadata, secondary Klasse, and secondary Klassifikasjonssystem), AbstraktMappe (and its Arkivdel, and Arkiv)                                                                                                                                                                                         |
+| Mappe              | AbstraktMappe (and its Noekkelord, virksomhetsspesifikkeMetadata, and Sakspart)                                                                                                                                                                                                                                                                                                          |
+| Arkivdel           | Arkivdel                                                                                                                                                                                                                                                                                                                                                                                 |
+
+## **search**
+
+Performs free text search in index documents.
+
+**Request**
+
+``` text
+POST /rms/api/public/noark5/v1/full-text/search HTTP/1.1
+Authorization: Bearer ACCESS_TOKEN
+Content-Type: application/json
+
+{
+  "doctype": string,
+  "query": string,
+  "offset: number,
+  "limit": number
+}
+```
+
+###### Details
+
+- **doctype**
+  - search for index documents with the specified doctype
+- **query**
+  - free text search string
+  - the search is performed across multiple fields
+  - the default search fields in the corresponding object types are:
+    - Klasse: klasseIdent, tittel
+    - AbstraktMappe: mappeIdent, tittel, offentligTittel, saksansvarlig
+    - Sakspart: sakspartNavn, kontaktperson
+    - AbstraktRegistrering: registreringsIdent, tittel, offentligTittel
+    - Korrespondansepart: korrespondansepartNavn, epostadresse, kontaktperson, foedselsnummer
+    - Dokument: tittel, beskrivelse
+    - Tekst (of the last Dokumentversjon)
+    - Noekkelord: verdi
+    - Arkivdel: tittel
+  - other search fields may be returned too; clients must not make an assumption about the exact set of fields returned by this endpoint
+- **offset** (optional)
+  - offset of the first result to retrieve
+  - defaults to *0*
+- **limit** (optional)
+  - maximum number of results to retrieve
+  - defaults to *10*
+
+**Response**
+
+``` text
+Content-Type: application/json
+
+{
+  "total": number,
+  "results": [
+    {
+      "ids": {
+        string: [string],
+        ...
+      },
+      "highlights": {
+        string: [string],
+        ...
+      }
+    },
+    ...
+  ],
+  "facets": [
+    {
+      "field": string,
+      "values": {
+        string:number,
+        ...
+      }
+    },
+    ...
+  ]
+}
+```
+
+**Details**
+- **total**
+  - total number of results (index documents that match the query)
+  - each result includes the IDs of the Noark 5 objects whose fields are included in the index document as well as highlighted snippets from matching fields
+- **results**
+  - **ids**
+    - Noark 5 object ID field: object IDs
+  - **highlights**
+    - matching field: highlighted text snippets from that field
+    - the beginning of a highlight is indicated by the string *|=hlstart=|*
+    - the end of a highlight is indicated by the string *|=hlend=|*
+- **facets**
+  - **field**
+    - name of a facet field
+    - the default facet fields in the corresponding object types are:
+      - Arkivdel: title,
+      - Klasse: klasseIdent_tittel (concatenated)
+      - Korrespondansepart: epostadresse
+      - AbstraktMappe: mappeIdent_tittel (concatenated), saksaar, saksansvarlig
+      - AbstraktRegistrering: journalansvarlig
+      - Korrespondansepart: foedselsnummer
+      - Noekkelord: verdi
+      - virksomhetsspesifikkeMetadata: documaster-technical-archive.project-type
+    - other facet fields may be returned too; clients must not make an assumption about the exact set of facets returned by this endpoint
+  - **values**
+    - facet value: number of index documents with that value
+
 # Code list management web services
 
 Address:

@@ -42,6 +42,46 @@ The web services are available at the following path:
 - Dates must be encoded as **ISO 8601** strings prior to sending them to the web services.
 - Dates are returned by the web services as **ISO 8601** formatted strings.
 
+### Error message formats
+
+The web services support the following error message response formats:
+- *plain text* (default)
+- *JSON*
+
+#### Plain text
+
+The default error message response format. Use JSON format for more detailed messages.
+
+#### JSON
+
+JSON error message responses will generally provide more detailed information about the problem when it is related to client errors.
+
+To enable JSON error message responses, the following HTTP header has to be added to the request:
+``` text
+X-Documaster-Error-Response-Type: application/json
+```
+
+**Response**
+
+``` text
+Content-Type: application/json
+
+{
+  "errorId": string,
+  "description": string,
+  "status": number
+}
+```
+
+###### Details
+
+- **errorId**
+  - unique identifier of the occurrence of the problem
+- **description**
+  - human-readable explanation specific to the occurrence of the problem
+- **status**
+  - HTTP status code
+
 # Core services
 
 Address:

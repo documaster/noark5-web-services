@@ -195,3 +195,10 @@ No default values are present in this list and must be configured in the system 
 |      |      | &nbsp;  |
 
 No default values are present in this list and must be configured in the system before use.
+
+### merknadstype (M619)
+
+| Code | Name                  | Comment |
+|:-----|:----------------------|:--------|
+| IMER | Intern merknad        |         |
+| MER  | Merknad               |  &nbsp; |

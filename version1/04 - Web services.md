@@ -105,6 +105,11 @@ Content-Type: application/json
   "offset: number,
   "limit": number,
   "query": string,
+  "joins":
+    {
+      string: string,
+      ...
+    }
   "parameters":
     {
       string: string|number|date|boolean|null,
@@ -134,6 +139,9 @@ Content-Type: application/json
 - **query** (optional)
   - an expression written in the web services query language defined in this specification
   - defaults to an empty string, i.e. search for all objects of the specified type
+- **joins**
+  - alias name : reference field
+  - allows to search in directly and indirectly linked objects (by executing database JOINs)
 - **parameters** (optional)
   - parameter name used in the query : parameter value
 - **sortOrder** (optional)

@@ -125,14 +125,8 @@ A join definition consists of:
 
 #### Joins example
 
-If business requirements dictate that a _Mappe_ linked to two secondary classes must be found, one would be inclined to write the following _incorrect_ query using reference chains:
-```
-refSekundaerKlasse.klasseIdent=@klasseIdent1 && refSekundaerKlasse.klasseIdent=@klasseIdent2
-```
+If business requirements dictate that a _Mappe_ linked to two secondary classes must be found, you can write the following joins query:
 
-Since _refSekundaerKlasse_ denotes a **single path** to the target reference, however, the query above will never return any results, because a _Klasse_ cannot have two distinct _klasseIdent_ at the same time. The two expressions are mutually-exclusive.
-
-To fulfill the business requirements, the query will have to be rewritten to:
 ```
 Joins:
     #klasse1 --> refSekundaerKlasse
@@ -143,10 +137,17 @@ Query:
 
 , where:
 
-* #klasse1 is an alias that denotes **one path** to the _Klasse_ reference via _refSekundaerKlasse_
-* #klasse2 is an alias that denotes a **different path** to the _Klasse_ reference again via _refSekundaerKlasse_
+* #klasse1 is an alias that denotes **one path** to the _Klasse_ reference via _refSekundaerKlasse_;
+* #klasse2 is an alias that denotes a **different path** to the _Klasse_ reference again via _refSekundaerKlasse_.
 
-, making the fulfillment of the business requirements possible.
+Note that the joins query above is **not equivalent** to the following query which would **yield no results**:
+```
+! Incorrect as it specifies mutually exclusive conditions
+
+refSekundaerKlasse.klasseIdent=@klasseIdent1 && refSekundaerKlasse.klasseIdent=@klasseIdent2
+```
+
+Since _refSekundaerKlasse_ denotes a **single path** to the target reference, the query will never return any results. A _Klasse_ cannot have two distinct _klasseIdent_ at the same time. The two expressions are mutually exclusive.
 
 ## Examples
 

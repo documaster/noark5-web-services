@@ -99,7 +99,7 @@ All of the examples above will serve the same purpose, but with varying degrees 
 
 Reference chaining is simple, easy to read, and will satisfy the business requirements of most applications. As such, it is the recommended approach when filtering by reference fields.
 
-A reference chain, regardless of how many times it occurs in a query, is always expected to denote a **single path** to the specified reference. The closest example would be the equivalent of a single JOIN statement in SQL.
+A reference chain, regardless of how many times it occurs in a query, is always expected to denote a **single path** to the specified reference.
 
 In the following example:
 ```

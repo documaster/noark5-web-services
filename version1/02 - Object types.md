@@ -54,6 +54,34 @@ The following notation is used in the tables below:
     - denotes **conditionally-writable fields**, i.e. fields that are only writable if you are granted special permissions for this in Documaster
     - there are good reasons why these fields are typically not writable
 
+### Table columns
+- **Field no.**
+    - Field number in the Noark 5 standard. Descriptions of the fields can be found in the document "Vedlegg 1: Metadatakatalog" that is available at this page:
+    https://www.arkivverket.no/forvaltning-og-utvikling/noark-standarden/noark-5/noark5-standarden
+- **Type**
+    - Data type
+- **Field**
+    - Field name as it is used in the API
+- **Not null**
+    - This field cannot be null. It must have a default value or a value provided via the API.
+- **Has default**
+    - If a value is not provided via the API, a default value will be generated.
+- **Code list**
+    - If there is a value in the code list column, the value in this field must be the code value from a code list entry.
+- **Save**
+    - If you can use this field in a Save operation
+- **View**
+    - You can read a value from this field
+- **Query**
+    - This field can be used for filtering in queries.
+- **Sort**
+    - This field can be used for sorting in queries.
+- **Link**
+    - This field can be used in Link operations. (ref* fields)
+- **Unlink**
+    - This field can be used in Unlink operations. (ref* fields)
+
+
 ## Archives and archive sections
 
 ### Arkiv

@@ -271,6 +271,7 @@ The following notation is used in the tables below:
 | M302      | string    | sakspartNavn                  |    x     |             |           |  |  x   |  x   |   x   |  x   |      |        |                                        |
 | M303      | string    | sakspartRolle                 |    x     |             |           |  |  x   |  x   |   x   |  x   |      |        |                                        |
 |           | string    | foedselsnummer                |          |             |           |  |  x   |  x   |   x   |  x   |      |        |                                        |
+|           | string    | organisasjonsnummer           |          |             |           |  |  x   |  x   |   x   |  x   |      |        |                                        |
 |           | string    | dnummer                       |          |             |           |  |  x   |  x   |   x   |  x   |      |        |                                        |
 | M406      | string    | postadresse                   |          |             |           |  |  x   |  x   |   x   |  x   |      |        |                                        |
 | M407      | string    | postnummer                    |          |             |           |  |  x   |  x   |   x   |  x   |      |        |                                        |
@@ -499,6 +500,7 @@ The following notation is used in the tables below:
 | M087      | string    | korrespondanseparttype        |    x     |             | korrespondanseparttype |  |  x   |  x   |   x   |      |      |        |                                                   |
 | M400      | string    | korrespondansepartNavn        |    x     |             |                        |  |  x   |  x   |   x   |  x   |      |        |                                                   |
 |           | string    | foedselsnummer                |          |             |                        |  |  x   |  x   |   x   |  x   |      |        |                                                   |
+|           | string    | organisasjonsnummer           |          |             |                        |  |  x   |  x   |   x   |  x   |      |        |                                                   |
 |           | string    | dnummer                       |          |             |                        |  |  x   |  x   |   x   |  x   |      |        |                                                   |
 | M406      | string    | postadresse                   |          |             |                        |  |  x   |  x   |   x   |  x   |      |        |                                                   |
 | M407      | string    | postnummer                    |          |             |                        |  |  x   |  x   |   x   |  x   |      |        |                                                   |

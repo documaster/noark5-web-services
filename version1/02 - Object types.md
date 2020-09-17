@@ -596,6 +596,7 @@ The following notation is used in the tables below:
 | M705      | string    | sjekksum               |    x     |      x      |               |  |  sm  |  x   |   x   |  x   |      |        |                                                                    |
 | M706      | string    | sjekksumAlgoritme      |    x     |      x      |               |  |  sm  |  x   |   x   |  x   |      |        |                                                                    |
 | M707      | number    | filstoerrelse          |    x     |      x      |               |  |  sm  |  x   |   x   |  x   |      |        |                                                                    |
+|           | boolean   | kryptertDokument       |    x     |      x      |               |  |  x   |  x   |   x   |  x   |      |        |                                                                    |
 |           | string    | filnavn                |    x     |      x      |               |  |  sm  |  x   |   x   |      |      |        |                                                                    |
 | M218      | string    | referanseDokumentfil   |    x     |             |               |  |  x   |  x   |   x   |  x   |      |        | <p>&bull; unique identifier of a document stored in the system</p> |
 |           |           |                        |          |             |               |  |      |      |       |      |      |        |                                                                    |

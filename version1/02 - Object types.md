@@ -258,29 +258,31 @@ The following notation is used in the tables below:
 
 ### Sakspart
 
-| Field no. | Type      | Field                  | Not null | Has default | Code list |  | Save | View | Query | Sort | Link | Unlink | Comment                                |
-|:----------|:----------|:-----------------------|:--------:|:-----------:|:----------|:-|:----:|:----:|:-----:|:----:|:----:|:------:|:---------------------------------------|
-|           | string    | id                     |    x     |      x      |           |  |  sm  |  x   |   x   |  x   |      |        |                                        |
-|           | string    | version                |    x     |      x      |           |  |  sm  |  x   |   x   |      |      |        |                                        |
-|           |           |                        |          |             |           |  |      |      |       |      |      |        |                                        |
-| M001      | string    | uuid                   |    x     |      x      |           |  |  cw  |  x   |   x   |  x   |      |        |                                        |
-| M600      | timestamp | opprettetDato          |    x     |      x      |           |  |  cw  |  x   |   x   |  x   |      |        |                                        |
-| M601      | string    | opprettetAv            |    x     |      x      |           |  |  cw  |  x   |   x   |  x   |      |        |                                        |
-| M601      | string    | opprettetAvBrukerIdent |    x     |      x      |           |  |  cw  |  x   |   x   |  x   |      |        |                                        |
-| M010      | string    | sakspartIdent          |          |             |           |  |  x   |  x   |   x   |  x   |      |        |                                        |
-| M302      | string    | sakspartNavn           |    x     |             |           |  |  x   |  x   |   x   |  x   |      |        |                                        |
-| M303      | string    | sakspartRolle          |    x     |             |           |  |  x   |  x   |   x   |  x   |      |        |                                        |
-|           | string    | foedselsnummer         |          |             |           |  |  x   |  x   |   x   |  x   |      |        |                                        |
-|           | string    | dnummer                |          |             |           |  |  x   |  x   |   x   |  x   |      |        |                                        |
-| M406      | string    | postadresse            |          |             |           |  |  x   |  x   |   x   |  x   |      |        |                                        |
-| M407      | string    | postnummer             |          |             |           |  |  x   |  x   |   x   |  x   |      |        |                                        |
-| M408      | string    | poststed               |          |             |           |  |  x   |  x   |   x   |  x   |      |        |                                        |
-| M409      | string    | land                   |          |             |           |  |  x   |  x   |   x   |  x   |      |        |                                        |
-| M410      | string    | epostadresse           |          |             |           |  |  x   |  x   |   x   |  x   |      |        |                                        |
-| M411      | string    | telefonnummer          |          |             |           |  |  x   |  x   |   x   |  x   |      |        |                                        |
-| M412      | string    | kontaktperson          |          |             |           |  |  x   |  x   |   x   |  x   |      |        |                                        |
-|           |           |                        |          |             |           |  |      |      |       |      |      |        |                                        |
-|           | ref       | refMappe               |    x     |             |           |  |      |  x   |   x   |      |  x   |        | <p>&bull; references **Saksmappe**</p> |
+| Field no. | Type      | Field                         | Not null | Has default | Code list |  | Save | View | Query | Sort | Link | Unlink | Comment                                |
+|:----------|:----------|:------------------------------|:--------:|:-----------:|:----------|:-|:----:|:----:|:-----:|:----:|:----:|:------:|:---------------------------------------|
+|           | string    | id                            |    x     |      x      |           |  |  sm  |  x   |   x   |  x   |      |        |                                        |
+|           | string    | version                       |    x     |      x      |           |  |  sm  |  x   |   x   |      |      |        |                                        |
+|           |           |                               |          |             |           |  |      |      |       |      |      |        |                                        |
+| M001      | string    | uuid                          |    x     |      x      |           |  |  cw  |  x   |   x   |  x   |      |        |                                        |
+| M600      | timestamp | opprettetDato                 |    x     |      x      |           |  |  cw  |  x   |   x   |  x   |      |        |                                        |
+| M601      | string    | opprettetAv                   |    x     |      x      |           |  |  cw  |  x   |   x   |  x   |      |        |                                        |
+| M601      | string    | opprettetAvBrukerIdent        |    x     |      x      |           |  |  cw  |  x   |   x   |  x   |      |        |                                        |
+| M010      | string    | sakspartIdent                 |          |             |           |  |  x   |  x   |   x   |  x   |      |        |                                        |
+| M302      | string    | sakspartNavn                  |    x     |             |           |  |  x   |  x   |   x   |  x   |      |        |                                        |
+| M303      | string    | sakspartRolle                 |    x     |             |           |  |  x   |  x   |   x   |  x   |      |        |                                        |
+|           | string    | foedselsnummer                |          |             |           |  |  x   |  x   |   x   |  x   |      |        |                                        |
+|           | string    | dnummer                       |          |             |           |  |  x   |  x   |   x   |  x   |      |        |                                        |
+| M406      | string    | postadresse                   |          |             |           |  |  x   |  x   |   x   |  x   |      |        |                                        |
+| M407      | string    | postnummer                    |          |             |           |  |  x   |  x   |   x   |  x   |      |        |                                        |
+| M408      | string    | poststed                      |          |             |           |  |  x   |  x   |   x   |  x   |      |        |                                        |
+| M409      | string    | land                          |          |             |           |  |  x   |  x   |   x   |  x   |      |        |                                        |
+| M410      | string    | epostadresse                  |          |             |           |  |  x   |  x   |   x   |  x   |      |        |                                        |
+| M411      | string    | telefonnummer                 |          |             |           |  |  x   |  x   |   x   |  x   |      |        |                                        |
+| M412      | string    | kontaktperson                 |          |             |           |  |  x   |  x   |   x   |  x   |      |        |                                        |
+|           |           |                               |          |             |           |  |      |      |       |      |      |        |                                        |
+| M711      | object    | virksomhetsspesifikkeMetadata |          |             |           |  |  x   |  x   |       |      |      |        |                                        |
+|           |           |                               |          |             |           |  |      |      |       |      |      |        |                                        |
+|           | ref       | refMappe                      |    x     |             |           |  |      |  x   |   x   |      |  x   |        | <p>&bull; references **Saksmappe**</p> |
 
 ### Moetemappe
 
@@ -485,31 +487,33 @@ The following notation is used in the tables below:
 
 ### Korrespondansepart
 
-| Feild no. | Type      | Field                  | Not null | Has default | Code list              |  | Save | View | Query | Sort | Link | Unlink | Comment                                           |
-|:----------|:----------|:-----------------------|:--------:|:-----------:|:-----------------------|:-|:----:|:----:|:-----:|:----:|:----:|:------:|:--------------------------------------------------|
-|           | string    | id                     |    x     |      x      |                        |  |  sm  |  x   |   x   |  x   |      |        |                                                   |
-|           | string    | version                |    x     |      x      |                        |  |  sm  |  x   |   x   |      |      |        |                                                   |
-|           |           |                        |          |             |                        |  |      |      |       |      |      |        |                                                   |
-| M001      | string    | uuid                   |    x     |      x      |                        |  |  cw  |  x   |   x   |  x   |      |        |                                                   |
-| M600      | timestamp | opprettetDato          |    x     |      x      |                        |  |  cw  |  x   |   x   |  x   |      |        |                                                   |
-| M601      | string    | opprettetAv            |    x     |      x      |                        |  |  cw  |  x   |   x   |  x   |      |        |                                                   |
-| M601      | string    | opprettetAvBrukerIdent |    x     |      x      |                        |  |  cw  |  x   |   x   |  x   |      |        |                                                   |
-| M087      | string    | korrespondanseparttype |    x     |             | korrespondanseparttype |  |  x   |  x   |   x   |      |      |        |                                                   |
-| M400      | string    | korrespondansepartNavn |    x     |             |                        |  |  x   |  x   |   x   |  x   |      |        |                                                   |
-|           | string    | foedselsnummer         |          |             |                        |  |  x   |  x   |   x   |  x   |      |        |                                                   |
-|           | string    | dnummer                |          |             |                        |  |  x   |  x   |   x   |  x   |      |        |                                                   |
-| M406      | string    | postadresse            |          |             |                        |  |  x   |  x   |   x   |  x   |      |        |                                                   |
-| M407      | string    | postnummer             |          |             |                        |  |  x   |  x   |   x   |  x   |      |        |                                                   |
-| M408      | string    | poststed               |          |             |                        |  |  x   |  x   |   x   |  x   |      |        |                                                   |
-| M409      | string    | land                   |          |             |                        |  |  x   |  x   |   x   |  x   |      |        |                                                   |
-| M410      | string    | epostadresse           |          |             |                        |  |  x   |  x   |   x   |  x   |      |        |                                                   |
-| M411      | string    | telefonnummer          |          |             |                        |  |  x   |  x   |   x   |  x   |      |        |                                                   |
-| M412      | string    | kontaktperson          |          |             |                        |  |  x   |  x   |   x   |  x   |      |        |                                                   |
-| M307      | string    | saksbehandler          |          |             |                        |  |  x   |  x   |   x   |  x   |      |        |                                                   |
-| M305      | string    | administrativEnhet     |          |             | administrativEnhet     |  |  x   |  x   |   x   |      |      |        |                                                   |
-|           | string    | ekspederingskanal      |          |             | ekspederingskanal      |  |  x   |  x   |   x   |      |      |        |                                                   |
-|           |           |                        |          |             |                        |  |      |      |       |      |      |        |                                                   |
-|           | ref       | refRegistrering        |    x     |             |                        |  |      |  x   |   x   |      |  x   |        | <p>&bull; references **AbstraktRegistrering**</p> |
+| Feild no. | Type      | Field                         | Not null | Has default | Code list              |  | Save | View | Query | Sort | Link | Unlink | Comment                                           |
+|:----------|:----------|:------------------------------|:--------:|:-----------:|:-----------------------|:-|:----:|:----:|:-----:|:----:|:----:|:------:|:--------------------------------------------------|
+|           | string    | id                            |    x     |      x      |                        |  |  sm  |  x   |   x   |  x   |      |        |                                                   |
+|           | string    | version                       |    x     |      x      |                        |  |  sm  |  x   |   x   |      |      |        |                                                   |
+|           |           |                               |          |             |                        |  |      |      |       |      |      |        |                                                   |
+| M001      | string    | uuid                          |    x     |      x      |                        |  |  cw  |  x   |   x   |  x   |      |        |                                                   |
+| M600      | timestamp | opprettetDato                 |    x     |      x      |                        |  |  cw  |  x   |   x   |  x   |      |        |                                                   |
+| M601      | string    | opprettetAv                   |    x     |      x      |                        |  |  cw  |  x   |   x   |  x   |      |        |                                                   |
+| M601      | string    | opprettetAvBrukerIdent        |    x     |      x      |                        |  |  cw  |  x   |   x   |  x   |      |        |                                                   |
+| M087      | string    | korrespondanseparttype        |    x     |             | korrespondanseparttype |  |  x   |  x   |   x   |      |      |        |                                                   |
+| M400      | string    | korrespondansepartNavn        |    x     |             |                        |  |  x   |  x   |   x   |  x   |      |        |                                                   |
+|           | string    | foedselsnummer                |          |             |                        |  |  x   |  x   |   x   |  x   |      |        |                                                   |
+|           | string    | dnummer                       |          |             |                        |  |  x   |  x   |   x   |  x   |      |        |                                                   |
+| M406      | string    | postadresse                   |          |             |                        |  |  x   |  x   |   x   |  x   |      |        |                                                   |
+| M407      | string    | postnummer                    |          |             |                        |  |  x   |  x   |   x   |  x   |      |        |                                                   |
+| M408      | string    | poststed                      |          |             |                        |  |  x   |  x   |   x   |  x   |      |        |                                                   |
+| M409      | string    | land                          |          |             |                        |  |  x   |  x   |   x   |  x   |      |        |                                                   |
+| M410      | string    | epostadresse                  |          |             |                        |  |  x   |  x   |   x   |  x   |      |        |                                                   |
+| M411      | string    | telefonnummer                 |          |             |                        |  |  x   |  x   |   x   |  x   |      |        |                                                   |
+| M412      | string    | kontaktperson                 |          |             |                        |  |  x   |  x   |   x   |  x   |      |        |                                                   |
+| M307      | string    | saksbehandler                 |          |             |                        |  |  x   |  x   |   x   |  x   |      |        |                                                   |
+| M305      | string    | administrativEnhet            |          |             | administrativEnhet     |  |  x   |  x   |   x   |      |      |        |                                                   |
+|           | string    | ekspederingskanal             |          |             | ekspederingskanal      |  |  x   |  x   |   x   |      |      |        |                                                   |
+|           |           |                               |          |             |                        |  |      |      |       |      |      |        |                                                   |
+|           | object    | virksomhetsspesifikkeMetadata |          |             |                        |  |  x   |  x   |       |      |      |        |                                                   |
+|           |           |                               |          |             |                        |  |      |      |       |      |      |        |                                                   |
+|           | ref       | refRegistrering               |    x     |             |                        |  |      |  x   |   x   |      |  x   |        | <p>&bull; references **AbstraktRegistrering**</p> |
 
 ### Dokumentflyt
 

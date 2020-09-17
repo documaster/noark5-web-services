@@ -174,7 +174,7 @@ Content-Type: application/json
         ...,
         "virksomhetsspesifikkeMetadata": {
           "groupId": {
-            "fieldId": {"type": "string|long|double|timestamp", "values": [string|long|double|timestamp] },
+            "fieldId": {"type": "string|long|double|timestamp|encrypted", "values": [string|long|double|timestamp|encrypted] },
             ...
           },
           ...
@@ -212,7 +212,7 @@ Content-Type: application/json
       - **fieldId**
         - field ID placeholder (e.g. sf3298fyf-8f9oqhf3)
         - **type**
-          - field type (possible values are *string*, *long*, *double*, and *timestamp*)
+          - field type (possible values are *string*, *long*, *double*, *timestamp*, and *encrypted*)
         - **values**
           - array of one or more field values of the particular type
 - **links**
@@ -329,7 +329,7 @@ Content-Type: application/json
         ...,
         "virksomhetsspesifikkeMetadata": {
           "groupId": {
-            "fieldId": {"values": [string|long|double|timestamp] },
+            "fieldId": {"values": [string|long|double|timestamp|encrypted] },
             ...
           },
           ...
@@ -836,7 +836,7 @@ Content-Type: application/json
           "fieldId": string,
           "fieldName": string,
           "fieldDescription": string,
-          "fieldType": string|long|double|timestamp,
+          "fieldType": string|long|double|timestamp|encrypted,
           "fieldValues": [string|long|double|timestamp]
         },
         ...
@@ -866,7 +866,7 @@ Content-Type: application/json
     - **fieldDescription**
       - field description
     - **fieldType**
-      - field type (possible values are string, long, double, and timestamp)
+      - field type (possible values are string, long, double, timestamp, and encrypted)
     - **fieldValues** (optional)
       - if present, an array of zero or more values
       - will be returned only for fields that support pre-defined values (i.e. values assigned to the field upon its creation)
@@ -956,7 +956,7 @@ Content-Type: application/json
 {
   "fieldName": string,
   "fieldDescription": string,
-  "fieldType": string|long|double|timestamp,
+  "fieldType": string|long|double|timestamp|encrypted,
   "fieldValues": [string|long|double|timestamp]
 }
 ```
@@ -972,7 +972,7 @@ Content-Type: application/json
 - **fieldDescription**
   - field description
 - **fieldType**
-  - field type (possible values are string, long, double, and timestamp)
+  - field type (possible values are string, long, double, timestamp, and encrypted)
 - **fieldValues** (optional)
   - if present, an array of zero or more values
   - must be supplied only for fields that support pre-defined values (i.e. values assigned to the field upon its creation)
@@ -988,7 +988,7 @@ Content-type: application/json
   "fieldId": string,
   "fieldName": string,
   "fieldDescription": string,
-  "fieldType": string|long|double|timestamp,
+  "fieldType": string|long|double|timestamp|encrypted,
   "fieldValues": [string|long|double|timestamp]
 }
 ```
@@ -1002,7 +1002,7 @@ Content-type: application/json
 - **fieldDescription**
   - field description
 - **fieldType**
-  - field type (possible values are string, long, double, and timestamp)
+  - field type (possible values are string, long, double, timestamp, and encrypted)
 - **fieldValues** (optional)
   - if present, an array of zero or more values
   - will be returned only for fields that support pre-defined values (i.e. values assigned to the field upon its creation)

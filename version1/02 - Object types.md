@@ -575,29 +575,31 @@ The following notation is used in the tables below:
 
 ### Dokument
 
-| Field no. | Type      | Field                     | Not null | Has default | Code list                 |  | Save | View | Query | Sort | Link | Unlink | Comment                                           |
-|:----------|:----------|:--------------------------|:--------:|:-----------:|:--------------------------|:-|:----:|:----:|:-----:|:----:|:----:|:------:|:--------------------------------------------------|
-|           | string    | id                        |    x     |      x      |                           |  |  sm  |  x   |   x   |  x   |      |        |                                                   |
-|           | string    | version                   |    x     |      x      |                           |  |  sm  |  x   |   x   |      |      |        |                                                   |
-|           |           |                           |          |             |                           |  |      |      |       |      |      |        |                                                   |
-| M001      | string    | uuid                      |    x     |      x      |                           |  |  cw  |  x   |   x   |  x   |      |        |                                                   |
-| M600      | timestamp | opprettetDato             |    x     |      x      |                           |  |  cw  |  x   |   x   |  x   |      |        |                                                   |
-| M601      | string    | opprettetAv               |    x     |      x      |                           |  |  cw  |  x   |   x   |  x   |      |        |                                                   |
-| M601      | string    | opprettetAvBrukerIdent    |    x     |      x      |                           |  |  cw  |  x   |   x   |  x   |      |        |                                                   |
-| M083      | string    | dokumenttype              |          |             | dokumenttype              |  |  x   |  x   |   x   |      |      |        |                                                   |
-| M054      | string    | dokumentstatus            |    x     |      x      | dokumentstatus            |  |  x   |  x   |   x   |      |      |        |                                                   |
-| M020      | string    | tittel                    |    x     |             |                           |  |  x   |  x   |   x   |  x   |      |        |                                                   |
-| M021      | string    | beskrivelse               |          |             |                           |  |  x   |  x   |   x   |  x   |      |        |                                                   |
-| M024      | string    | forfatter                 |          |             |                           |  |  x   |  x   |   x   |  x   |      |        |                                                   |
-| M300      | string    | dokumentmedium            |    x     |      x      | dokumentmedium            |  |  x   |  x   |   x   |      |      |        |                                                   |
-| M217      | string    | tilknyttetRegistreringSom |    x     |             | tilknyttetRegistreringSom |  |  x   |  x   |   x   |      |      |        |                                                   |
-| M007      | number    | dokumentnummer            |    x     |      x      |                           |  |  cw  |  x   |   x   |  x   |      |        |                                                   |
-| M500      | string    | skjerming                 |          |             | skjerming                 |  |  x   |  x   |   x   |      |      |        |                                                   |
-|           |           |                           |          |             |                           |  |      |      |       |      |      |        |                                                   |
-|           | ref       | refRegistrering           |    x     |             |                           |  |      |  x   |   x   |      |  x   |   x    | <p>&bull; references **AbstraktRegistrering**</p> |
-|           | ref       | refDokumentversjon        |          |             |                           |  |      |      |   x   |      |  x   |   x    |                                                   |
-|           | ref       | refEksternId              |          |             |                           |  |      |      |   x   |      |  x   |        |                                             |
-|           | ref       | refMerknad                |          |             |                           |  |      |      |   x   |      |  x   |        | &nbsp;                                            |
+| Field no. | Type      | Field                         | Not null | Has default | Code list                 |  | Save | View | Query | Sort | Link | Unlink | Comment                                           |
+|:----------|:----------|:------------------------------|:--------:|:-----------:|:--------------------------|:-|:----:|:----:|:-----:|:----:|:----:|:------:|:--------------------------------------------------|
+|           | string    | id                            |    x     |      x      |                           |  |  sm  |  x   |   x   |  x   |      |        |                                                   |
+|           | string    | version                       |    x     |      x      |                           |  |  sm  |  x   |   x   |      |      |        |                                                   |
+|           |           |                               |          |             |                           |  |      |      |       |      |      |        |                                                   |
+| M001      | string    | uuid                          |    x     |      x      |                           |  |  cw  |  x   |   x   |  x   |      |        |                                                   |
+| M600      | timestamp | opprettetDato                 |    x     |      x      |                           |  |  cw  |  x   |   x   |  x   |      |        |                                                   |
+| M601      | string    | opprettetAv                   |    x     |      x      |                           |  |  cw  |  x   |   x   |  x   |      |        |                                                   |
+| M601      | string    | opprettetAvBrukerIdent        |    x     |      x      |                           |  |  cw  |  x   |   x   |  x   |      |        |                                                   |
+| M083      | string    | dokumenttype                  |          |             | dokumenttype              |  |  x   |  x   |   x   |      |      |        |                                                   |
+| M054      | string    | dokumentstatus                |    x     |      x      | dokumentstatus            |  |  x   |  x   |   x   |      |      |        |                                                   |
+| M020      | string    | tittel                        |    x     |             |                           |  |  x   |  x   |   x   |  x   |      |        |                                                   |
+| M021      | string    | beskrivelse                   |          |             |                           |  |  x   |  x   |   x   |  x   |      |        |                                                   |
+| M024      | string    | forfatter                     |          |             |                           |  |  x   |  x   |   x   |  x   |      |        |                                                   |
+| M300      | string    | dokumentmedium                |    x     |      x      | dokumentmedium            |  |  x   |  x   |   x   |      |      |        |                                                   |
+| M217      | string    | tilknyttetRegistreringSom     |    x     |             | tilknyttetRegistreringSom |  |  x   |  x   |   x   |      |      |        |                                                   |
+| M007      | number    | dokumentnummer                |    x     |      x      |                           |  |  cw  |  x   |   x   |  x   |      |        |                                                   |
+| M500      | string    | skjerming                     |          |             | skjerming                 |  |  x   |  x   |   x   |      |      |        |                                                   |
+|           |           |                               |          |             |                           |  |      |      |       |      |      |        |                                                   |
+|           | object    | virksomhetsspesifikkeMetadata |          |             |                           |  |  x   |  x   |       |      |      |        |                                                   |
+|           |           |                               |          |             |                           |  |      |      |       |      |      |        |                                                   |
+|           | ref       | refRegistrering               |    x     |             |                           |  |      |  x   |   x   |      |  x   |   x    | <p>&bull; references **AbstraktRegistrering**</p> |
+|           | ref       | refDokumentversjon            |          |             |                           |  |      |      |   x   |      |  x   |   x    |                                                   |
+|           | ref       | refEksternId                  |          |             |                           |  |      |      |   x   |      |  x   |        |                                                   |
+|           | ref       | refMerknad                    |          |             |                           |  |      |      |   x   |      |  x   |        | &nbsp;                                            |
 
 ### Dokumentversjon
 

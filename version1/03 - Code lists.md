@@ -196,6 +196,30 @@ No default values are present in this list and must be configured in the system 
 
 No default values are present in this list and must be configured in the system before use.
 
+### plantype
+
+| Code | Name | Comment |
+|:-----|:-----|:--------|
+|      |      | &nbsp;  |
+
+No default values are present in this list and must be configured in the system before use.
+
+### planstatus
+
+| Code | Name | Comment |
+|:-----|:-----|:--------|
+|      |      | &nbsp;  |
+
+No default values are present in this list and must be configured in the system before use.
+
+### lovreferanse
+
+| Code | Name | Comment |
+|:-----|:-----|:--------|
+|      |      | &nbsp;  |
+
+No default values are present in this list and must be configured in the system before use.
+
 ### merknadstype (M619)
 
 | Code | Name                  | Comment |

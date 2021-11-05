@@ -17,19 +17,20 @@ The web services require an access token (Bearer) to be specified in the HTTP he
 
 The following table lists the HTTP status codes used by the web services.
 
-| Status code                | Definition                                                                                               | Example                                                         |
-|:---------------------------|:---------------------------------------------------------------------------------------------------------|:----------------------------------------------------------------|
-| 200 OK                     | The request was successful.                                                                              | HTTP/1.1 200 OK                                                 |
-| 201 Created                | The request was fulfilled and resulted in a new resource being created.                                  | HTTP/1.1 201 Created                                            |
-| 204 No Content             | The request was successful, but there is no content to send in the response payload body.                | HTTP/1.1 204 No Content                                         |
-| 400 Bad Request            | The syntax of the request was invalid.                                                                   | HTTP/1.1 400 Bad Request                                        |
-| 415 Unsupported Media Type | The payload format requested by the client is not supported by the server.                               | HTTP/1.1 415 Unsupported Media Type                             |
-| 401 Unauthorized           | The request was denied due to an invalid or missing access token.                                        | <p>HTTP/1.1 401 Unauthorized</p><p>WWW-Authenticate: Bearer</p> |
-| 403 Forbidden              | The request was denied due to the access token having insufficient privileges.                           | HTTP/1.1 403 Forbidden                                          |
-| 404 Not Found              | The requested resource does not exist or is not accessible.                                              | HTTP/1.1 404 Not Found                                          |
-| 409 Conflict               | Data was updated by another client after the last read by this client. The client may retry the request. | HTTP/1.1 409 Conflict                                           |
-| 500 Internal Server Error  | An internal server error has occurred.                                                                   | HTTP/1.1 500 Internal Server Error                              |
-| 503 Service Unavailable    | The service is temporarily unavailable.                                                                  | HTTP/1.1 503 Service Unavailable                                |
+| Status code                | Definition                                                                                                                                                                                                        | Example                                                         |
+|:---------------------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:----------------------------------------------------------------|
+| 200 OK                     | The request was successful.                                                                                                                                                                                       | HTTP/1.1 200 OK                                                 |
+| 201 Created                | The request was fulfilled and resulted in a new resource being created.                                                                                                                                           | HTTP/1.1 201 Created                                            |
+| 202 Accepted               | The request has been accepted for processing, but the processing has not been completed. The request might or might not eventually be acted upon, as it might be disallowed when processing actually takes place. | HTTP/1.1 202 Accepted                                           |
+| 204 No Content             | The request was successful, but there is no content to send in the response payload body.                                                                                                                         | HTTP/1.1 204 No Content                                         |
+| 400 Bad Request            | The syntax of the request was invalid.                                                                                                                                                                            | HTTP/1.1 400 Bad Request                                        |
+| 415 Unsupported Media Type | The payload format requested by the client is not supported by the server.                                                                                                                                        | HTTP/1.1 415 Unsupported Media Type                             |
+| 401 Unauthorized           | The request was denied due to an invalid or missing access token.                                                                                                                                                 | <p>HTTP/1.1 401 Unauthorized</p><p>WWW-Authenticate: Bearer</p> |
+| 403 Forbidden              | The request was denied due to the access token having insufficient privileges.                                                                                                                                    | HTTP/1.1 403 Forbidden                                          |
+| 404 Not Found              | The requested resource does not exist or is not accessible.                                                                                                                                                       | HTTP/1.1 404 Not Found                                          |
+| 409 Conflict               | Data was updated by another client after the last read by this client. The client may retry the request.                                                                                                          | HTTP/1.1 409 Conflict                                           |
+| 500 Internal Server Error  | An internal server error has occurred.                                                                                                                                                                            | HTTP/1.1 500 Internal Server Error                              |
+| 503 Service Unavailable    | The service is temporarily unavailable.                                                                                                                                                                           | HTTP/1.1 503 Service Unavailable                                |
 
 ### Paths
 
@@ -1030,3 +1031,66 @@ Both **groupId** and **fieldId** are strings comprised of lower-case letters, di
 **Response**
 
 No content will be returned upon successful completion.
+
+# Bulk operations
+
+Address:
+```
+https://{server}:{port}/rms/api/public/noark5/v1/bulk
+```
+
+## **close**
+
+Closes a single entity and its underlying objects recursively and asynchronously: the web service returns immediately after checking that the entity exists and performs the operation asynchronously.
+
+**Request**
+
+``` text
+GET /rms/api/public/noark5/v1/bulk/close HTTP/1.1
+Authorization: Bearer ACCESS_TOKEN
+Content-Type: application/json
+
+{
+  "type": string,
+  "id": string
+}
+```
+
+###### Details
+
+- **type**
+  - object type \[Arkiv, Arkivdel, AbstraktMappe, AbstraktRegistrering, DokumentBeskrivelse, Klassifikasjonssystem, Klasse\]
+- **id**
+  - the ID of the object
+
+**Response**
+
+202 Accepted
+
+## **open**
+
+Opens a single entity and its underlying objects recursively and asynchronously: the web service returns immediately after checking that the entity exists and performs the operation asynchronously.
+
+**Request**
+
+``` text
+GET /rms/api/public/noark5/v1/bulk/open HTTP/1.1
+Authorization: Bearer ACCESS_TOKEN
+Content-Type: application/json
+
+{
+  "type": string,
+  "id": string
+}
+```
+
+###### Details
+
+- **type**
+  - object type \[Arkiv, Arkivdel, AbstraktMappe, AbstraktRegistrering, DokumentBeskrivelse, Klassifikasjonssystem, Klasse\]
+- **id**
+  - the ID of the object
+
+**Response**
+
+202 Accepted

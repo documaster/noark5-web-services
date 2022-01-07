@@ -1110,3 +1110,128 @@ Content-Type: application/json
 **Response**
 
 202 Accepted
+
+# Access Control web services
+
+## Managing access modifiers
+
+This set of endpoints allows you to mark classifications systems (Klassifikasjonssystem) and Code lists as access controlling.
+
+Address:
+```
+https://{server}:{port}/rms/api/public/noark5/v1/access-modifier/
+```
+
+### Set determines access control flag on Klassifikasjonssystem
+
+Marks a Klassifikasjonssystem as participating in access control.
+
+**Request**
+
+``` text
+POST /rms/api/public/noark5/v1/access-modifier/klassifikasjons-system HTTP/1.1
+Authorization: Bearer ACCESS_TOKEN
+Content-Type: application/json
+
+{
+  "id": string,
+  "determinesAccessControl": boolean
+}
+```
+
+###### Details
+
+- **id**
+  - the ID of the Klassifikasjonssystem
+- **determinesAccessControl**
+  - whether the Klassifikasjonssystem participates in access control.
+
+**Response**
+
+200 OK
+
+### Set determines access control flag on code list
+
+Marks a code list as participating in access control.
+
+Supported code lists are mappetype, dokumenttype, skjerming, administrativEnhet.
+
+**Request**
+
+``` text
+POST /rms/api/public/noark5/v1/access-modifier/code-list HTTP/1.1
+Authorization: Bearer ACCESS_TOKEN
+Content-Type: application/json
+
+{
+  "id": string,
+  "determinesAccessControl": boolean
+}
+```
+
+###### Details
+
+- **id**
+  - the ID of the code list
+  - one of mappetype, dokumenttype, skjerming, administrativEnhet
+- **determinesAccessControl**
+  - whether the code list participates in access control.
+
+**Response**
+
+200 OK
+
+### Get determines access control flag on Klassifikasjonssystem
+
+Fetch information whether a Klassifikasjonssystem participates in access control.
+
+**Request**
+
+``` text
+GET /rms/api/public/noark5/v1/access-modifier/klassifikasjons-system/{id} HTTP/1.1
+Authorization: Bearer ACCESS_TOKEN
+```
+
+###### Details
+
+- **id**
+  - the ID of the Klassifikasjonssystem
+
+**Response**
+
+```text
+Content-type: application/json
+
+{
+  "determinesAccessControl": boolean
+}
+```
+
+### Get determines access control flag on code list
+
+Fetch information whether a Code list participates in access control.
+
+Supported code lists are mappetype, dokumenttype, skjerming, administrativEnhet.
+
+**Request**
+
+``` text
+GET /rms/api/public/noark5/v1/access-modifier/code-list/{id} HTTP/1.1
+Authorization: Bearer ACCESS_TOKEN
+```
+
+###### Details
+
+- **id**
+  - the ID of the code list
+  - one of mappetype, dokumenttype, skjerming, administrativEnhet
+
+**Response**
+
+```text
+Content-type: application/json
+
+{
+  "determinesAccessControl": boolean
+}
+```

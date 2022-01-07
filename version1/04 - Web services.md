@@ -1113,6 +1113,57 @@ Content-Type: application/json
 
 # Access Control web services
 
+## Getting information about available service and explicit permissions
+
+Retrieve information about available service and explicit permissions used in managing access groups and permissions
+
+**Request**
+
+```text
+GET /rms/api/public/noark5/v1/access-group/info HTTP/1.1
+Authorization: Bearer ACCESS_TOKEN
+```
+
+**Response**
+
+```text
+Content-type: application/json
+
+{
+  "servicePermissions": [string],
+  "explicitPermissions": [string]
+}
+```
+
+The available service permissions at the time of writing this documentation are:
+* Edit list values
+* Write changelog
+* Store light PDF
+* Edit journaled
+* Dispose documents
+* Edit finalized
+* Publish documents
+* View changelog
+* Journal
+* Store documents
+* GUI administrator
+* Security administrator
+
+New service permissions may be added over time.
+
+The available explicit permissions at the time of writing this documentation are:
+* ReadThis
+* Read
+* Delete
+* Grant
+* ReadRelated
+* Update
+* Move
+* Create
+* UpdateSystemManaged
+
+New explicit permissions may be added over time.
+
 ## Managing access modifiers
 
 This set of endpoints allows you to mark classifications systems (Klassifikasjonssystem) and Code lists as access controlling.

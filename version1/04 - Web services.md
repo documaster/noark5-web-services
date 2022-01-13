@@ -2021,3 +2021,181 @@ Authorization: Bearer ACCESS_TOKEN
 **Response**
 
 204 No Content
+
+## Managing BSM registry permissions
+
+This set of endpoints allows you to manage the explicit permissions on the BSM registry.
+
+Address:
+```
+https://{server}:{port}/rms/api/public/noark5/v1/permission/bsm-registry
+```
+
+### Get existing permissions
+
+Gets existing permissions for the BSM registry.
+
+**Request**
+
+``` text
+GET /rms/api/public/noark5/v1/permission/bsm-registry?groupId=LONG&offset=INTEGER&limit=INTEGER HTTP/1.1
+Authorization: Bearer ACCESS_TOKEN
+```
+
+###### Details
+
+- **groupId** (optional)
+  - the group ID for which to fetch existing permissions
+  - if omitted, all permissions for the specified object will be returned ordered by group identifier (asc)
+- **offset** (optional)
+  - offset of first result
+  - defaults to 0
+  - must be greater than or equal to 0
+- **limit** (optional)
+  - maximum number of results to retrieve
+  - must be greater than 0 and less than or equal to 200
+  - defaults to 10
+
+**Response**
+
+200 OK
+
+```
+Content-type: application/json
+
+{
+    "permissions": [
+      {
+        "groupId": long,
+        "explicitPermissions": [string]   
+      }
+    ],
+    "hasMore": boolean
+}
+```
+
+###### Details
+
+- **groupId**
+  - the group ID for which permissions were assigned
+- **explicitPermissions**
+  - a non-empty list of assigned explicit permissions
+  - see "available service and explicit permissions" endpoint or the Access Control document
+- **hasMore**
+  - indicates if there are more results matching the query than those in the current page
+
+
+### Create a new permission
+
+Creates a new permission for the BSM registry.
+
+**Request**
+
+``` text
+POST /rms/api/public/noark5/v1/permission/bsm-registry HTTP/1.1
+Authorization: Bearer ACCESS_TOKEN
+Content-Type: application/json
+
+{
+    "groupId": long,
+    "explicitPermissions": [string]   
+}
+```
+
+###### Details
+
+- **groupId**
+  - the group ID for which to assign permissions
+- **explicitPermissions**
+  - a non-empty list of explicit permissions to set
+  - see "available service and explicit permissions" endpoint or the Access Control document
+
+**Response**
+
+201 Created
+
+```
+Content-type: application/json
+
+{
+    "groupId": long,
+    "explicitPermissions": [string]   
+}
+```
+
+###### Details
+
+- **groupId**
+  - the group ID for which permissions were assigned
+- **explicitPermissions**
+  - a non-empty list of assigned explicit permissions
+  - see "available service and explicit permissions" endpoint or the Access Control document
+
+### Update an existing permission
+
+Updates an existing permission for the BSM registry.
+
+**Request**
+
+``` text
+PUT /rms/api/public/noark5/v1/permission/bsm-registry HTTP/1.1
+Authorization: Bearer ACCESS_TOKEN
+Content-Type: application/json
+
+{
+    "groupId": long,
+    "explicitPermissions": [string]   
+}
+```
+
+###### Details
+
+- **groupId**
+  - the group ID for which to update permissions
+- **explicitPermissions**
+  - a non-empty list of explicit permissions to update
+  - see "available service and explicit permissions" endpoint or the Access Control document
+
+**Response**
+
+200 OK
+
+```
+Content-type: application/json
+
+{
+    "groupId": long,
+    "explicitPermissions": [string]   
+}
+```
+
+###### Details
+
+- **groupId**
+  - the group ID for which permissions were assigned
+- **explicitPermissions**
+  - a non-empty list of assigned explicit permissions
+  - see "available service and explicit permissions" endpoint or the Access Control document
+
+### Delete an existing permission
+
+Deletes an existing permission for the BSM registry.
+
+When an access group is not specified, deletes all known permissions for all groups on the specified object.
+
+**Request**
+
+``` text
+DELETE /rms/api/public/noark5/v1/permission/bsm-registry?groupId=LONG HTTP/1.1
+Authorization: Bearer ACCESS_TOKEN
+```
+
+###### Details
+
+- **groupId** (optional)
+  - the group ID for which to delete permissions
+  - if the groupId is omitted, all permissions on the specified object will be deleted
+
+**Response**
+
+204 No Content

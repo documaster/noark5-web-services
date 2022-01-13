@@ -61,6 +61,8 @@ For entity types the `explicitPermission` can be specified using the rms/api/pub
 
 For code lists and values the `explicitPermission` can be specified using the rms/api/public/noark5/v1/permission/code-list web services.
 
+For business-speicific metadata the `explicitPermission` can be specified using the rms/api/public/noark5/v1/permission/bsm-registry web services.
+
 For AccessGroups the `globalPermissions` can be specified using the rms/api/public/noark5/v1/access-group web services.
 
 The following `explicitPermissions`/`globalPermissions` can be used for entity types and access groups:
@@ -173,7 +175,16 @@ POST rms/api/public/noark5/v1/permission/entity
 
 You could optionally grant `Create`, `Update`, or `Delete` for the Klassifikasjonssystemer if you would like users to be able to create, edit, or delete existing Klasser.
 
-Finally, you will need to repeat the same request for all Code lists to which the user needs to have access:
+Finally, you will need to repeat the same request for the BSM registry and all Code lists to which the user needs to have access:
+
+```json
+POST rms/api/public/noark5/v1/permission/bsm-registry
+
+{
+    "groupId": long,
+    "explicitPermissions": ["ReadThis", "Read"]
+}
+```
 
 ```json
 POST rms/api/public/noark5/v1/permission/code-list

@@ -1286,3 +1286,227 @@ Content-type: application/json
   "determinesAccessControl": boolean
 }
 ```
+
+## Managing entity permissions
+
+This set of endpoints allows you to manage the explicit permissions on the specified objects:
+* Klassifikasjonssystem
+* Klasse
+* Arkiv
+* Arkivdel
+* Mappe (all types)
+* Registrering (all types)
+
+Refer to the "Managing code list permissions" section for managing the permissions on code lists and values.
+
+Address:
+```
+https://{server}:{port}/rms/api/public/noark5/v1/permission/entity
+```
+
+### Get existing permissions
+
+Gets existing permissions for an object and/or group.
+
+**Request**
+
+``` text
+GET /rms/api/public/noark5/v1/permission/entity?groupId=LONG&objectType=STRING&objectId=STRING&offset=INTEGER&limit=INTEGER HTTP/1.1
+Authorization: Bearer ACCESS_TOKEN
+```
+
+###### Details
+
+- **groupId** (optional)
+  - the group ID for which to fetch existing permissions
+  - if omitted, all permissions for the specified object will be returned ordered by group identifier (asc)
+- **objectType**
+  - the object type for which to fetch existing permissions
+- **objectId**
+  - the object ID for which to fetch existing permissions
+- **offset** (optional)
+  - offset of first result
+  - defaults to 0
+  - must be greater than or equal to 0
+- **limit** (optional)
+  - maximum number of results to retrieve
+  - must be greater than 0 and less than or equal to 200
+  - defaults to 10
+
+**Response**
+
+200 OK
+
+```
+Content-type: application/json
+
+{
+    "permissions: [
+      {
+        "groupId": long,
+        "objectType": string,
+        "objectId": string,
+        "explicitPermissions": [string]
+      }
+    ],
+    "hasMore": boolean
+}
+```
+
+###### Details
+
+- **groupId**
+  - the group ID for which permissions were assigned
+- **objectType**
+  - the object type for which permissions were assigned
+- **objectId**
+  - the object ID for which permissions were assigned
+- **explicitPermissions**
+  - a non-empty list of assigned explicit permissions
+  - see "available service and explicit permissions" endpoint or the Access Control document
+- **hasMore**
+  - indicates if there are more results matching the query than those in the current page
+
+
+### Create a new permission
+
+Creates a new permission for an existing entity and access group.
+
+**Request**
+
+``` text
+POST /rms/api/public/noark5/v1/permission/entity HTTP/1.1
+Authorization: Bearer ACCESS_TOKEN
+Content-Type: application/json
+
+{
+    "groupId": long,
+    "objectType": string,
+    "objectId": string,
+    "explicitPermissions": [string]   
+}
+```
+
+###### Details
+
+- **groupId**
+  - the group ID for which to assign permissions
+- **objectType**
+  - the object type on which to assign permissions
+- **objectId**
+  - the object ID on which to assign permissions
+- **explicitPermissions**
+  - a non-empty list of explicit permissions to set
+  - see "available service and explicit permissions" endpoint or the Access Control document
+
+**Response**
+
+201 Created
+
+```
+Content-type: application/json
+
+{
+    "groupId": long,
+    "objectType": string,
+    "objectId": string,
+    "explicitPermissions": [string]   
+}
+```
+
+###### Details
+
+- **groupId**
+  - the group ID for which permissions were assigned
+- **objectType**
+  - the object type for which permissions were assigned
+- **objectId**
+  - the object ID for which permissions were assigned
+- **explicitPermissions**
+  - a non-empty list of assigned explicit permissions
+  - see "available service and explicit permissions" endpoint or the Access Control document
+
+### Update an existing permission
+
+Updates an existing permission for an existing entity and access group.
+
+**Request**
+
+``` text
+PUT /rms/api/public/noark5/v1/permission/entity HTTP/1.1
+Authorization: Bearer ACCESS_TOKEN
+Content-Type: application/json
+
+{
+    "groupId": long,
+    "objectType": string,
+    "objectId": string,
+    "explicitPermissions": [string]   
+}
+```
+
+###### Details
+
+- **groupId**
+  - the group ID for which to update permissions
+- **objectType**
+  - the object type on which to update permissions
+- **objectId**
+  - the object ID on which to update permissions
+- **explicitPermissions**
+  - a non-empty list of explicit permissions to update
+  - see "available service and explicit permissions" endpoint or the Access Control document
+
+**Response**
+
+200 OK
+
+```
+Content-type: application/json
+
+{
+    "groupId": long,
+    "objectType": string,
+    "objectId": string,
+    "explicitPermissions": [string]   
+}
+```
+
+###### Details
+
+- **groupId**
+  - the group ID for which permissions were assigned
+- **objectType**
+  - the object type for which permissions were assigned
+- **objectId**
+  - the object ID for which permissions were assigned
+- **explicitPermissions**
+  - a non-empty list of assigned explicit permissions
+  - see "available service and explicit permissions" endpoint or the Access Control document
+
+### Delete an existing permission
+
+Deletes an existing permission for an existing entity and/or access group.
+
+When an access group is not specified, deletes all known permissions for all groups on this object.
+
+**Request**
+
+``` text
+DELETE /rms/api/public/noark5/v1/permission/entity?objectType=STRING&objectId=STRING&groupId=LONG HTTP/1.1
+Authorization: Bearer ACCESS_TOKEN
+```
+
+###### Details
+
+- **groupId** (optional)
+  - the group ID for which to delete permissions
+  - if the groupId is omitted, all permissions on the specified object will be deleted
+- **objectType**
+  - the object type on which to delete permissions
+- **objectId**
+  - the object ID on which to delete permissions
+
+**Response**
+
+204 No Content

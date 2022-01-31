@@ -1287,6 +1287,276 @@ Content-type: application/json
 }
 ```
 
+## Managing access groups
+
+This set of endpoints allows you to perform read, create, and update operations on access groups.
+
+Address:
+```
+https://{server}:{port}/rms/api/public/noark5/v1/access-group
+```
+
+### Get all access groups
+
+Gets all access groups in the system.
+
+**Request**
+
+```text
+GET /rms/api/public/noark5/v1/access-group?offset=INTEGER&limit=INTEGER
+Authorization: Bearer ACCESS_TOKEN
+```
+
+###### Details
+
+- **offset** (optional)
+  - offset of first result
+  - defaults to 0
+  - must be greater than or equal to 0
+- **limit** (optional)
+  - maximum number of results to retrieve
+  - must be greater than 0 and less than or equal to 100
+  - defaults to 10
+
+**Response**
+
+200 OK
+
+```text
+Content-type: application/json
+
+{
+    "groups": [
+        {
+            "id": long,
+            "name": string,
+            "description": string
+            "claims": [string, ...],
+            "globalPermissions": [string, ...],
+            "servicePermissions": [string, ...]
+        },
+        ...
+    ],
+    "hasMore": boolean
+}
+```
+
+###### Details
+
+- **id**
+  - the ID of the group
+- **name**
+  - the name of the group
+- **description**
+  - the description of the group
+- **claims**
+  - the group claims
+- **globalPermissions**
+  - the group global explicit permissions
+- **servicePermissions**
+  - the group service permissions
+- **hasMore**
+  - indicates if there are more results matching the query than those in the current page
+
+### Get access groups by ID
+
+Gets an access group by its identifier.
+
+**Request**
+
+```text
+GET /rms/api/public/noark5/v1/access-group/{id}
+Authorization: Bearer ACCESS_TOKEN
+```
+
+###### Details
+
+- **id**
+  - the identifier of the access group to fetch
+
+**Response**
+
+200 OK
+
+```text
+Content-type: application/json
+
+{
+    "id": long,
+    "name": string,
+    "description": string
+    "claims": [string, ...],
+    "globalPermissions": [string, ...],
+    "servicePermissions": [string, ...]
+}
+```
+
+###### Details
+
+- **id**
+  - the ID of the group
+- **name**
+  - the name of the group
+- **description**
+  - the description of the group
+- **claims**
+  - the group claims
+- **globalPermissions**
+  - the group global explicit permissions
+- **servicePermissions**
+  - the group service permissions
+
+### Create an access group
+
+Creates an access group
+
+**Request**
+
+```text
+POST /rms/api/public/noark5/v1/access-group
+Authorization: Bearer ACCESS_TOKEN
+Content-type: application/json
+
+{
+    "name": string,
+    "description": string
+    "claims": [string, ...],
+    "globalPermissions": [string, ...],
+    "servicePermissions": [string, ...]
+}
+```
+
+###### Details
+
+- **name**
+  - the name of the group
+  - must not be an empty string
+- **description** (optional)
+  - the description of the group
+  - must not be an empty string when specified
+- **claims**
+  - the group claims
+  - must contain at least one non-null, non-empty value
+- **globalPermissions** (optional)
+  - the group global explicit permissions
+  - must contain only explicit permissions as defined in the "Access control" documentation
+- **servicePermissions** (optional)
+  - the group service permissions
+  - must contain only service permissions as defined in the "Access control" documentation
+
+**Response**
+
+201 Created
+
+```text
+Content-type: application/json
+
+{
+    "id": long,
+    "name": string,
+    "description": string
+    "claims": [string, ...],
+    "globalPermissions": [string, ...],
+    "servicePermissions": [string, ...]
+}
+```
+
+###### Details
+
+- **id**
+  - the ID of the group
+- **name**
+  - the name of the group
+- **description**
+  - the description of the group
+- **claims**
+  - the group claims
+- **globalPermissions**
+  - the group global explicit permissions
+- **servicePermissions**
+  - the group service permissions
+- **objectId**
+  - the object ID for which to fetch existing permissions
+
+
+### Update an access group
+
+Updates an existing access group
+
+**Request**
+
+```text
+PUT /rms/api/public/noark5/v1/access-group/{id}
+Authorization: Bearer ACCESS_TOKEN
+Content-type: application/json
+
+{
+    "name": string,
+    "description": string
+    "claims": [string, ...],
+    "globalPermissions": [string, ...],
+    "servicePermissions": [string, ...]
+}
+```
+
+###### Details
+
+- **id**
+  - the identifier of the group to update
+- **name** (optional)
+  - the name of the group
+  - must not be an empty string, if specified
+- **description** (optional)
+  - the description of the group
+  - must not be an empty string when specified
+- **claims** (optional)
+  - the group claims
+  - must contain at least one non-null, non-empty value, if specified
+- **globalPermissions** (optional)
+  - the group global explicit permissions
+  - must contain only explicit permissions as defined in the "Access control" documentation, if specified
+- **servicePermissions** (optional)
+  - the group service permissions
+  - must contain only service permissions as defined in the "Access control" documentation, if specified
+
+Setting any of the fields overrides any previous value in those fields.
+
+At least one of the fields must be specified for updating. Fields that were not specified will not be modified.
+
+**Response**
+
+200 OK
+
+```text
+Content-type: application/json
+
+{
+    "id": long,
+    "name": string,
+    "description": string
+    "claims": [string, ...],
+    "globalPermissions": [string, ...],
+    "servicePermissions": [string, ...]
+}
+```
+
+###### Details
+
+- **id**
+  - the ID of the group
+- **name**
+  - the name of the group
+- **description**
+  - the description of the group
+- **claims**
+  - the group claims
+- **globalPermissions**
+  - the group global explicit permissions
+- **servicePermissions**
+  - the group service permissions
+- **objectId**
+  - the object ID for which to fetch existing permissions
+
 ## Managing entity permissions
 
 This set of endpoints allows you to manage the explicit permissions on the specified objects:

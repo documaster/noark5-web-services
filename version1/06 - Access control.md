@@ -151,7 +151,7 @@ Additionally, update the Fonds you would like to grant them access to like so:
 POST rms/api/public/noark5/v1/permission/entity
 
 {
-    "groupId": long,
+    "accessGroupId": long,
     "objectType": "Arkiv",
     "objectId": string,
     "explicitPermissions": ["ReadThis", "Read", "Create", "Update", "UpdateSystemManaged"]
@@ -166,7 +166,7 @@ Additionally, you will need to repeat the same request for all Klassifikasjonssy
 POST rms/api/public/noark5/v1/permission/entity
 
 {
-    "groupId": long,
+    "accessGroupId": long,
     "objectType": "Klassifikasjonssystem",
     "objectId": string,
     "explicitPermissions": ["ReadThis", "Read"]
@@ -181,7 +181,7 @@ Finally, you will need to repeat the same request for the BSM registry and all C
 POST rms/api/public/noark5/v1/permission/bsm-registry
 
 {
-    "groupId": long,
+    "accessGroupId": long,
     "explicitPermissions": ["ReadThis", "Read"]
 }
 ```
@@ -190,7 +190,7 @@ POST rms/api/public/noark5/v1/permission/bsm-registry
 POST rms/api/public/noark5/v1/permission/code-list
 
 {
-    "groupId": long,
+    "accessGroupId": long,
     "listType": "all",
     "explicitPermissions": ["ReadThis", "Read"]
 }

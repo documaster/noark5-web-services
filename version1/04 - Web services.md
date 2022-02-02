@@ -1581,14 +1581,14 @@ Gets existing permissions for an object and/or group.
 **Request**
 
 ``` text
-GET /rms/api/public/noark5/v1/permission/entity?groupId=LONG&objectType=STRING&objectId=STRING&offset=INTEGER&limit=INTEGER HTTP/1.1
+GET /rms/api/public/noark5/v1/permission/entity?accessGroupId=LONG&objectType=STRING&objectId=STRING&offset=INTEGER&limit=INTEGER HTTP/1.1
 Authorization: Bearer ACCESS_TOKEN
 ```
 
 ###### Details
 
-- **groupId** (optional)
-  - the group ID for which to fetch existing permissions
+- **accessGroupId** (optional)
+  - the access group ID for which to fetch existing permissions
   - if omitted, all permissions for the specified object will be returned ordered by group identifier (asc)
 - **objectType**
   - the object type for which to fetch existing permissions
@@ -1613,7 +1613,7 @@ Content-type: application/json
 {
     "permissions: [
       {
-        "groupId": long,
+        "accessGroupId": long,
         "objectType": string,
         "objectId": string,
         "explicitPermissions": [string]
@@ -1625,8 +1625,8 @@ Content-type: application/json
 
 ###### Details
 
-- **groupId**
-  - the group ID for which permissions were assigned
+- **accessGroupId**
+  - the access group ID for which permissions were assigned
 - **objectType**
   - the object type for which permissions were assigned
 - **objectId**
@@ -1650,7 +1650,7 @@ Authorization: Bearer ACCESS_TOKEN
 Content-Type: application/json
 
 {
-    "groupId": long,
+    "accessGroupId": long,
     "objectType": string,
     "objectId": string,
     "explicitPermissions": [string]   
@@ -1659,8 +1659,8 @@ Content-Type: application/json
 
 ###### Details
 
-- **groupId**
-  - the group ID for which to assign permissions
+- **accessGroupId**
+  - the access group ID for which to assign permissions
 - **objectType**
   - the object type on which to assign permissions
 - **objectId**
@@ -1677,7 +1677,7 @@ Content-Type: application/json
 Content-type: application/json
 
 {
-    "groupId": long,
+    "accessGroupId": long,
     "objectType": string,
     "objectId": string,
     "explicitPermissions": [string]   
@@ -1686,8 +1686,8 @@ Content-type: application/json
 
 ###### Details
 
-- **groupId**
-  - the group ID for which permissions were assigned
+- **accessGroupId**
+  - the access group ID for which permissions were assigned
 - **objectType**
   - the object type for which permissions were assigned
 - **objectId**
@@ -1708,7 +1708,7 @@ Authorization: Bearer ACCESS_TOKEN
 Content-Type: application/json
 
 {
-    "groupId": long,
+    "accessGroupId": long,
     "objectType": string,
     "objectId": string,
     "explicitPermissions": [string]   
@@ -1717,8 +1717,8 @@ Content-Type: application/json
 
 ###### Details
 
-- **groupId**
-  - the group ID for which to update permissions
+- **accessGroupId**
+  - the access group ID for which to update permissions
 - **objectType**
   - the object type on which to update permissions
 - **objectId**
@@ -1735,7 +1735,7 @@ Content-Type: application/json
 Content-type: application/json
 
 {
-    "groupId": long,
+    "accessGroupId": long,
     "objectType": string,
     "objectId": string,
     "explicitPermissions": [string]   
@@ -1744,7 +1744,7 @@ Content-type: application/json
 
 ###### Details
 
-- **groupId**
+- **accessGroupId**
   - the group ID for which permissions were assigned
 - **objectType**
   - the object type for which permissions were assigned
@@ -1763,15 +1763,15 @@ When an access group is not specified, deletes all known permissions for all gro
 **Request**
 
 ``` text
-DELETE /rms/api/public/noark5/v1/permission/entity?objectType=STRING&objectId=STRING&groupId=LONG HTTP/1.1
+DELETE /rms/api/public/noark5/v1/permission/entity?objectType=STRING&objectId=STRING&accessGroupId=LONG HTTP/1.1
 Authorization: Bearer ACCESS_TOKEN
 ```
 
 ###### Details
 
-- **groupId** (optional)
-  - the group ID for which to delete permissions
-  - if the groupId is omitted, all permissions on the specified object will be deleted
+- **accessGroupId** (optional)
+  - the access group ID for which to delete permissions
+  - if the accessGroupId is omitted, all permissions on the specified object will be deleted
 - **objectType**
   - the object type on which to delete permissions
 - **objectId**
@@ -1807,14 +1807,14 @@ The use cases are, respectively:
 **Request**
 
 ``` text
-GET /rms/api/public/noark5/v1/permission/code-list?groupId=LONG&listType=STRING&code=STRING&offset=INTEGER&limit=INTEGER HTTP/1.1
+GET /rms/api/public/noark5/v1/permission/code-list?accessGroupId=LONG&listType=STRING&code=STRING&offset=INTEGER&limit=INTEGER HTTP/1.1
 Authorization: Bearer ACCESS_TOKEN
 ```
 
 ###### Details
 
-- **groupId** (optional)
-  - the group ID for which to fetch existing permissions
+- **accessGroupId** (optional)
+  - the access group ID for which to fetch existing permissions
   - if omitted, all permissions for the specified object will be returned ordered by group identifier (asc)
 - **listType**
   - the list type for which to fetch existing permissions
@@ -1842,7 +1842,7 @@ Content-type: application/json
 {
     "permissions": [
       {
-        "groupId": long,
+        "accessGroupId": long,
         "listType": string,
         "code": string,
         "explicitPermissions": [string]   
@@ -1854,8 +1854,8 @@ Content-type: application/json
 
 ###### Details
 
-- **groupId**
-  - the group ID for which permissions were assigned
+- **accessGroupId**
+  - the access group ID for which permissions were assigned
 - **listType**
   - the list type for which permissions were assigned
   - could be one of 'all', 'admnistrativEnhet', 'mappetype', 'dokumenttype', 'skjerming', where 'all' represents permissions applicable to all code lists and the other values represent permissions applied on a specific code list
@@ -1881,7 +1881,7 @@ Authorization: Bearer ACCESS_TOKEN
 Content-Type: application/json
 
 {
-    "groupId": long,
+    "accessGroupId": long,
     "listType": string,
     "code": string,
     "explicitPermissions": [string]   
@@ -1890,8 +1890,8 @@ Content-Type: application/json
 
 ###### Details
 
-- **groupId**
-  - the group ID for which to assign permissions
+- **accessGroupId**
+  - the access group ID for which to assign permissions
 - **listType**
   - the list type for which to create permissions
   - could be one of 'all', 'admnistrativEnhet', 'mappetype', 'dokumenttype', 'skjerming', where 'all' represents permissions applicable to all code lists and the other values represent permissions applied on a specific code list
@@ -1910,7 +1910,7 @@ Content-Type: application/json
 Content-type: application/json
 
 {
-    "groupId": long,
+    "accessGroupId": long,
     "listType": string,
     "code": string,
     "explicitPermissions": [string]   
@@ -1919,8 +1919,8 @@ Content-type: application/json
 
 ###### Details
 
-- **groupId**
-  - the group ID for which permissions were assigned
+- **accessGroupId**
+  - the access group ID for which permissions were assigned
 - **listType**
   - the list type for which permissions were assigned
   - could be one of 'all', 'admnistrativEnhet', 'mappetype', 'dokumenttype', 'skjerming', where 'all' represents permissions applicable to all code lists and the other values represent permissions applied on a specific code list
@@ -1943,7 +1943,7 @@ Authorization: Bearer ACCESS_TOKEN
 Content-Type: application/json
 
 {
-    "groupId": long,
+    "accessGroupId": long,
     "listType": string,
     "code": string,
     "explicitPermissions": [string]   
@@ -1952,8 +1952,8 @@ Content-Type: application/json
 
 ###### Details
 
-- **groupId**
-  - the group ID for which to update permissions
+- **accessGroupId**
+  - the access group ID for which to update permissions
 - **listType**
   - the list type whose permissions to update
   - could be one of 'all', 'admnistrativEnhet', 'mappetype', 'dokumenttype', 'skjerming', where 'all' represents permissions applicable to all code lists and the other values represent permissions applied on a specific code list
@@ -1972,7 +1972,7 @@ Content-Type: application/json
 Content-type: application/json
 
 {
-    "groupId": long,
+    "accessGroupId": long,
     "listType": string,
     "code": string,
     "explicitPermissions": [string]   
@@ -1981,7 +1981,7 @@ Content-type: application/json
 
 ###### Details
 
-- **groupId**
+- **accessGroupId**
   - the group ID for which permissions were assigned
 - **listType**
   - the list type for which permissions were assigned
@@ -2002,15 +2002,15 @@ When an access group is not specified, deletes all known permissions for all gro
 **Request**
 
 ``` text
-DELETE /rms/api/public/noark5/v1/permission/code-list?listType=STRING&code=STRING&groupId=LONG HTTP/1.1
+DELETE /rms/api/public/noark5/v1/permission/code-list?listType=STRING&code=STRING&accessGroupId=LONG HTTP/1.1
 Authorization: Bearer ACCESS_TOKEN
 ```
 
 ###### Details
 
-- **groupId** (optional)
-  - the group ID for which to delete permissions
-  - if the groupId is omitted, all permissions on the specified object will be deleted
+- **accessGroupId** (optional)
+  - the access group ID for which to delete permissions
+  - if the accessGroupId is omitted, all permissions on the specified object will be deleted
 - **listType**
   - the list type whose permissions to delete
   - could be one of 'all', 'admnistrativEnhet', 'mappetype', 'dokumenttype', 'skjerming', where 'all' represents permissions applicable to all code lists and the other values represent permissions applied on a specific code list
@@ -2038,14 +2038,14 @@ Gets existing permissions for the BSM registry.
 **Request**
 
 ``` text
-GET /rms/api/public/noark5/v1/permission/bsm-registry?groupId=LONG&offset=INTEGER&limit=INTEGER HTTP/1.1
+GET /rms/api/public/noark5/v1/permission/bsm-registry?accessGroupId=LONG&offset=INTEGER&limit=INTEGER HTTP/1.1
 Authorization: Bearer ACCESS_TOKEN
 ```
 
 ###### Details
 
-- **groupId** (optional)
-  - the group ID for which to fetch existing permissions
+- **accessGroupId** (optional)
+  - the access group ID for which to fetch existing permissions
   - if omitted, all permissions for the specified object will be returned ordered by group identifier (asc)
 - **offset** (optional)
   - offset of first result
@@ -2066,7 +2066,7 @@ Content-type: application/json
 {
     "permissions": [
       {
-        "groupId": long,
+        "accessGroupId": long,
         "explicitPermissions": [string]   
       }
     ],
@@ -2076,8 +2076,8 @@ Content-type: application/json
 
 ###### Details
 
-- **groupId**
-  - the group ID for which permissions were assigned
+- **accessGroupId**
+  - the access group ID for which permissions were assigned
 - **explicitPermissions**
   - a non-empty list of assigned explicit permissions
   - see "available service and explicit permissions" endpoint or the Access Control document
@@ -2097,15 +2097,15 @@ Authorization: Bearer ACCESS_TOKEN
 Content-Type: application/json
 
 {
-    "groupId": long,
+    "accessGroupId": long,
     "explicitPermissions": [string]   
 }
 ```
 
 ###### Details
 
-- **groupId**
-  - the group ID for which to assign permissions
+- **accessGroupId**
+  - the access group ID for which to assign permissions
 - **explicitPermissions**
   - a non-empty list of explicit permissions to set
   - see "available service and explicit permissions" endpoint or the Access Control document
@@ -2118,15 +2118,15 @@ Content-Type: application/json
 Content-type: application/json
 
 {
-    "groupId": long,
+    "accessGroupId": long,
     "explicitPermissions": [string]   
 }
 ```
 
 ###### Details
 
-- **groupId**
-  - the group ID for which permissions were assigned
+- **accessGroupId**
+  - the access group ID for which permissions were assigned
 - **explicitPermissions**
   - a non-empty list of assigned explicit permissions
   - see "available service and explicit permissions" endpoint or the Access Control document
@@ -2143,15 +2143,15 @@ Authorization: Bearer ACCESS_TOKEN
 Content-Type: application/json
 
 {
-    "groupId": long,
+    "accessGroupId": long,
     "explicitPermissions": [string]   
 }
 ```
 
 ###### Details
 
-- **groupId**
-  - the group ID for which to update permissions
+- **accessGroupId**
+  - the access group ID for which to update permissions
 - **explicitPermissions**
   - a non-empty list of explicit permissions to update
   - see "available service and explicit permissions" endpoint or the Access Control document
@@ -2164,15 +2164,15 @@ Content-Type: application/json
 Content-type: application/json
 
 {
-    "groupId": long,
+    "accessGroupId": long,
     "explicitPermissions": [string]   
 }
 ```
 
 ###### Details
 
-- **groupId**
-  - the group ID for which permissions were assigned
+- **accessGroupId**
+  - the access group ID for which permissions were assigned
 - **explicitPermissions**
   - a non-empty list of assigned explicit permissions
   - see "available service and explicit permissions" endpoint or the Access Control document
@@ -2186,15 +2186,15 @@ When an access group is not specified, deletes all known permissions for all gro
 **Request**
 
 ``` text
-DELETE /rms/api/public/noark5/v1/permission/bsm-registry?groupId=LONG HTTP/1.1
+DELETE /rms/api/public/noark5/v1/permission/bsm-registry?accessGroupId=LONG HTTP/1.1
 Authorization: Bearer ACCESS_TOKEN
 ```
 
 ###### Details
 
-- **groupId** (optional)
-  - the group ID for which to delete permissions
-  - if the groupId is omitted, all permissions on the specified object will be deleted
+- **accessGroupId** (optional)
+  - the access group ID for which to delete permissions
+  - if the accessGroupId is omitted, all permissions on the specified object will be deleted
 
 **Response**
 

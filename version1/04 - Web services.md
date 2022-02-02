@@ -1780,3 +1780,422 @@ Authorization: Bearer ACCESS_TOKEN
 **Response**
 
 204 No Content
+
+## Managing code list permissions
+
+This set of endpoints allows you to manage the explicit permissions on the specified objects:
+* all code lists
+* just the administrativEnhet code list or any of its list values
+* just the mappetype code list or any of its list values
+* just the dokumenttype code list or any of its list values
+* just the skjerming code list or any of its list values
+
+Address:
+```
+https://{server}:{port}/rms/api/public/noark5/v1/permission/code-list
+```
+
+### Get existing permissions
+
+Gets existing permissions for all code lists, a single code list, or a specific code list value.
+
+The use cases are, respectively:
+* GET /rms/api/public/noark5/v1/permission/code-list?listType=all
+* GET /rms/api/public/noark5/v1/permission/code-list?listType=administrativEnhet|mappetype|dokumenttype|skjerming
+* GET /rms/api/public/noark5/v1/permission/code-list?listType=administrativEnhet|mappetype|dokumenttype|skjerming&code=CODE
+
+**Request**
+
+``` text
+GET /rms/api/public/noark5/v1/permission/code-list?groupId=LONG&listType=STRING&code=STRING&offset=INTEGER&limit=INTEGER HTTP/1.1
+Authorization: Bearer ACCESS_TOKEN
+```
+
+###### Details
+
+- **groupId** (optional)
+  - the group ID for which to fetch existing permissions
+  - if omitted, all permissions for the specified object will be returned ordered by group identifier (asc)
+- **listType**
+  - the list type for which to fetch existing permissions
+  - could be one of 'all', 'admnistrativEnhet', 'mappetype', 'dokumenttype', 'skjerming', where 'all' represents permissions applicable to all code lists and the other values represent permissions applied on a specific code list
+  - 'all' can be considered as an entity of its own that is the parent of existing code lists
+- **code** (optional)
+  - the specific code list value for which to fetch existing permissions
+  - when present, only the permissions applied on the specified code list value will be returned
+- **offset** (optional)
+  - offset of first result
+  - defaults to 0
+  - must be greater than or equal to 0
+- **limit** (optional)
+  - maximum number of results to retrieve
+  - must be greater than 0 and less than or equal to 200
+  - defaults to 10
+
+**Response**
+
+200 OK
+
+```
+Content-type: application/json
+
+{
+    "permissions": [
+      {
+        "groupId": long,
+        "listType": string,
+        "code": string,
+        "explicitPermissions": [string]   
+      }
+    ],
+    "hasMore": boolean
+}
+```
+
+###### Details
+
+- **groupId**
+  - the group ID for which permissions were assigned
+- **listType**
+  - the list type for which permissions were assigned
+  - could be one of 'all', 'admnistrativEnhet', 'mappetype', 'dokumenttype', 'skjerming', where 'all' represents permissions applicable to all code lists and the other values represent permissions applied on a specific code list
+  - 'all' can be considered as an entity of its own that is the parent of existing code lists
+- **code**
+  - the specific code list value for which permissions were assigned
+- **explicitPermissions**
+  - a non-empty list of assigned explicit permissions
+  - see "available service and explicit permissions" endpoint or the Access Control document
+- **hasMore**
+  - indicates if there are more results matching the query than those in the current page
+
+
+### Create a new permission
+
+Creates a new permission for all code lists, an existing code list, or an existing code list value and access group.
+
+**Request**
+
+``` text
+POST /rms/api/public/noark5/v1/permission/code-list HTTP/1.1
+Authorization: Bearer ACCESS_TOKEN
+Content-Type: application/json
+
+{
+    "groupId": long,
+    "listType": string,
+    "code": string,
+    "explicitPermissions": [string]   
+}
+```
+
+###### Details
+
+- **groupId**
+  - the group ID for which to assign permissions
+- **listType**
+  - the list type for which to create permissions
+  - could be one of 'all', 'admnistrativEnhet', 'mappetype', 'dokumenttype', 'skjerming', where 'all' represents permissions applicable to all code lists and the other values represent permissions applied on a specific code list
+  - 'all' can be considered as an entity of its own that is the parent of existing code lists
+- **code** (optional)
+  - the specific code list value for which to create permissions
+- **explicitPermissions**
+  - a non-empty list of explicit permissions to set
+  - see "available service and explicit permissions" endpoint or the Access Control document
+
+**Response**
+
+201 Created
+
+```
+Content-type: application/json
+
+{
+    "groupId": long,
+    "listType": string,
+    "code": string,
+    "explicitPermissions": [string]   
+}
+```
+
+###### Details
+
+- **groupId**
+  - the group ID for which permissions were assigned
+- **listType**
+  - the list type for which permissions were assigned
+  - could be one of 'all', 'admnistrativEnhet', 'mappetype', 'dokumenttype', 'skjerming', where 'all' represents permissions applicable to all code lists and the other values represent permissions applied on a specific code list
+  - 'all' can be considered as an entity of its own that is the parent of existing code lists
+- **code** (optional)
+  - the specific code list value for which permissions were assigned
+- **explicitPermissions**
+  - a non-empty list of assigned explicit permissions
+  - see "available service and explicit permissions" endpoint or the Access Control document
+
+### Update an existing permission
+
+Updates an existing permission for all lists, an existing code list, or an existing code list value and access group.
+
+**Request**
+
+``` text
+PUT /rms/api/public/noark5/v1/permission/code-list HTTP/1.1
+Authorization: Bearer ACCESS_TOKEN
+Content-Type: application/json
+
+{
+    "groupId": long,
+    "listType": string,
+    "code": string,
+    "explicitPermissions": [string]   
+}
+```
+
+###### Details
+
+- **groupId**
+  - the group ID for which to update permissions
+- **listType**
+  - the list type whose permissions to update
+  - could be one of 'all', 'admnistrativEnhet', 'mappetype', 'dokumenttype', 'skjerming', where 'all' represents permissions applicable to all code lists and the other values represent permissions applied on a specific code list
+  - 'all' can be considered as an entity of its own that is the parent of existing code lists
+- **code** (optional)
+  - the specific code list value whose permissions to update
+- **explicitPermissions**
+  - a non-empty list of explicit permissions to update
+  - see "available service and explicit permissions" endpoint or the Access Control document
+
+**Response**
+
+200 OK
+
+```
+Content-type: application/json
+
+{
+    "groupId": long,
+    "listType": string,
+    "code": string,
+    "explicitPermissions": [string]   
+}
+```
+
+###### Details
+
+- **groupId**
+  - the group ID for which permissions were assigned
+- **listType**
+  - the list type for which permissions were assigned
+  - could be one of 'all', 'admnistrativEnhet', 'mappetype', 'dokumenttype', 'skjerming', where 'all' represents permissions applicable to all code lists and the other values represent permissions applied on a specific code list
+  - 'all' can be considered as an entity of its own that is the parent of existing code lists
+- **code** (optional)
+  - the specific code list value for which permissions were assigned
+- **explicitPermissions**
+  - a non-empty list of assigned explicit permissions
+  - see "available service and explicit permissions" endpoint or the Access Control document
+
+### Delete an existing permission
+
+Deletes an existing permission for all code lists, an existing code list, or an existing code list value and/or access group.
+
+When an access group is not specified, deletes all known permissions for all groups on the specified object.
+
+**Request**
+
+``` text
+DELETE /rms/api/public/noark5/v1/permission/code-list?listType=STRING&code=STRING&groupId=LONG HTTP/1.1
+Authorization: Bearer ACCESS_TOKEN
+```
+
+###### Details
+
+- **groupId** (optional)
+  - the group ID for which to delete permissions
+  - if the groupId is omitted, all permissions on the specified object will be deleted
+- **listType**
+  - the list type whose permissions to delete
+  - could be one of 'all', 'admnistrativEnhet', 'mappetype', 'dokumenttype', 'skjerming', where 'all' represents permissions applicable to all code lists and the other values represent permissions applied on a specific code list
+  - 'all' can be considered as an entity of its own that is the parent of existing code lists
+- **code** (optional)
+  - the specific code list value whose permissions to delete
+
+**Response**
+
+204 No Content
+
+## Managing BSM registry permissions
+
+This set of endpoints allows you to manage the explicit permissions on the BSM registry.
+
+Address:
+```
+https://{server}:{port}/rms/api/public/noark5/v1/permission/bsm-registry
+```
+
+### Get existing permissions
+
+Gets existing permissions for the BSM registry.
+
+**Request**
+
+``` text
+GET /rms/api/public/noark5/v1/permission/bsm-registry?groupId=LONG&offset=INTEGER&limit=INTEGER HTTP/1.1
+Authorization: Bearer ACCESS_TOKEN
+```
+
+###### Details
+
+- **groupId** (optional)
+  - the group ID for which to fetch existing permissions
+  - if omitted, all permissions for the specified object will be returned ordered by group identifier (asc)
+- **offset** (optional)
+  - offset of first result
+  - defaults to 0
+  - must be greater than or equal to 0
+- **limit** (optional)
+  - maximum number of results to retrieve
+  - must be greater than 0 and less than or equal to 200
+  - defaults to 10
+
+**Response**
+
+200 OK
+
+```
+Content-type: application/json
+
+{
+    "permissions": [
+      {
+        "groupId": long,
+        "explicitPermissions": [string]   
+      }
+    ],
+    "hasMore": boolean
+}
+```
+
+###### Details
+
+- **groupId**
+  - the group ID for which permissions were assigned
+- **explicitPermissions**
+  - a non-empty list of assigned explicit permissions
+  - see "available service and explicit permissions" endpoint or the Access Control document
+- **hasMore**
+  - indicates if there are more results matching the query than those in the current page
+
+
+### Create a new permission
+
+Creates a new permission for the BSM registry.
+
+**Request**
+
+``` text
+POST /rms/api/public/noark5/v1/permission/bsm-registry HTTP/1.1
+Authorization: Bearer ACCESS_TOKEN
+Content-Type: application/json
+
+{
+    "groupId": long,
+    "explicitPermissions": [string]   
+}
+```
+
+###### Details
+
+- **groupId**
+  - the group ID for which to assign permissions
+- **explicitPermissions**
+  - a non-empty list of explicit permissions to set
+  - see "available service and explicit permissions" endpoint or the Access Control document
+
+**Response**
+
+201 Created
+
+```
+Content-type: application/json
+
+{
+    "groupId": long,
+    "explicitPermissions": [string]   
+}
+```
+
+###### Details
+
+- **groupId**
+  - the group ID for which permissions were assigned
+- **explicitPermissions**
+  - a non-empty list of assigned explicit permissions
+  - see "available service and explicit permissions" endpoint or the Access Control document
+
+### Update an existing permission
+
+Updates an existing permission for the BSM registry.
+
+**Request**
+
+``` text
+PUT /rms/api/public/noark5/v1/permission/bsm-registry HTTP/1.1
+Authorization: Bearer ACCESS_TOKEN
+Content-Type: application/json
+
+{
+    "groupId": long,
+    "explicitPermissions": [string]   
+}
+```
+
+###### Details
+
+- **groupId**
+  - the group ID for which to update permissions
+- **explicitPermissions**
+  - a non-empty list of explicit permissions to update
+  - see "available service and explicit permissions" endpoint or the Access Control document
+
+**Response**
+
+200 OK
+
+```
+Content-type: application/json
+
+{
+    "groupId": long,
+    "explicitPermissions": [string]   
+}
+```
+
+###### Details
+
+- **groupId**
+  - the group ID for which permissions were assigned
+- **explicitPermissions**
+  - a non-empty list of assigned explicit permissions
+  - see "available service and explicit permissions" endpoint or the Access Control document
+
+### Delete an existing permission
+
+Deletes an existing permission for the BSM registry.
+
+When an access group is not specified, deletes all known permissions for all groups on the specified object.
+
+**Request**
+
+``` text
+DELETE /rms/api/public/noark5/v1/permission/bsm-registry?groupId=LONG HTTP/1.1
+Authorization: Bearer ACCESS_TOKEN
+```
+
+###### Details
+
+- **groupId** (optional)
+  - the group ID for which to delete permissions
+  - if the groupId is omitted, all permissions on the specified object will be deleted
+
+**Response**
+
+204 No Content

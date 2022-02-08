@@ -220,7 +220,7 @@ No default values are present in this list and must be configured in the system 
 
 No default values are present in this list and must be configured in the system before use.
 
-### merknadstype (M619)
+### merknadstype (M084)
 
 | Code | Name                  | Comment |
 |:-----|:----------------------|:--------|

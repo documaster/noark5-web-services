@@ -626,6 +626,7 @@ The following notation is used in the tables below:
 | M217      | string    | tilknyttetRegistreringSom     |    x     |             | tilknyttetRegistreringSom |  |  x   |  x   |   x   |      |      |        |                                                   |
 | M007      | number    | dokumentnummer                |    x     |      x      |                           |  |  cw  |  x   |   x   |  x   |      |        |                                                   |
 | M500      | string    | skjerming                     |          |             | skjerming                 |  |  x   |  x   |   x   |      |      |        |                                                   |
+|           | timestamp | forventetKassasjonsDato       |          |             |                           |  |  sm  |  x   |   x   |  x   |      |        |                                                   |
 |           |           |                               |          |             |                           |  |      |      |       |      |      |        |                                                   |
 |           | object    | virksomhetsspesifikkeMetadata |          |             |                           |  |  x   |  x   |       |      |      |        |                                                   |
 |           |           |                               |          |             |                           |  |      |      |       |      |      |        |                                                   |

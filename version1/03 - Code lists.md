@@ -226,3 +226,26 @@ No default values are present in this list and must be configured in the system 
 |:-----|:----------------------|:--------|
 | IMER | Intern merknad        |         |
 | MER  | Merknad               |  &nbsp; |
+
+### presedensStatus (M056)
+
+| Code | Name                  | Comment |
+|:-----|:----------------------|:--------|
+| G    | Gjeldende             |         |
+| F    | Foreldet              |  &nbsp; |
+
+### presedensHjemmel (M311)
+
+| Code | Name | Comment |
+|:-----|:-----|:--------|
+|      |      |  &nbsp; |
+
+No default values are present in this list and must be configured in the system before use.
+
+### rettskildefaktor (M312)
+
+| Code | Name | Comment |
+|:-----|:-----|:--------|
+|      |      |  &nbsp; |
+
+No default values are present in this list and must be configured in the system before use.

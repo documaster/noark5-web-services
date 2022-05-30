@@ -249,3 +249,19 @@ No default values are present in this list and must be configured in the system 
 |      |      |  &nbsp; |
 
 No default values are present in this list and must be configured in the system before use.
+
+### kassasjonsvedtak (M450)
+
+| Code | Name            | Comment |
+|:-----|:----------------|:--------|
+| B    | Bevares         |         |
+| K    | Kasseres        |         |
+| V    | Vurderes senere | &nbsp;  |
+
+### kassasjonshjemmel (M453)
+
+| Code | Name | Comment |
+|:-----|:-----|:--------|
+|      |      |  &nbsp; |
+
+No default values are present in this list and must be configured in the system before use.

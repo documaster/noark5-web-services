@@ -651,6 +651,9 @@ The following notation is used in the tables below:
 | M451      | number    | bevaringstid                  |          |             |                           |  |  x   |  x   |   x   |  x   |      |        |                                                   |
 | M500      | string    | skjerming                     |          |             | skjerming                 |  |  x   |  x   |   x   |      |      |        |                                                   |
 |           | timestamp | forventetKassasjonsDato       |          |             |                           |  |  sm  |  x   |   x   |  x   |      |        |                                                   |
+| M630      | timestamp | kassertDato                   |          |             |                           |  |  sm  |  x   |   x   |  x   |      |        |                                                   |
+| M631      | string    | kassertAv                     |          |             |                           |  |  sm  |  x   |   x   |  x   |      |        |                                                   |
+|           | string    | kassertAvBrukerIdent          |          |             |                           |  |  sm  |  x   |   x   |  x   |      |        |                                                   |
 |           |           |                               |          |             |                           |  |      |      |       |      |      |        |                                                   |
 |           | object    | virksomhetsspesifikkeMetadata |          |             |                           |  |  x   |  x   |       |      |      |        |                                                   |
 |           |           |                               |          |             |                           |  |      |      |       |      |      |        |                                                   |

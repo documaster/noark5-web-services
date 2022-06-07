@@ -638,6 +638,9 @@ The following notation is used in the tables below:
 | M600      | timestamp | opprettetDato                 |    x     |      x      |                           |  |  cw  |  x   |   x   |  x   |      |        |                                                   |
 | M601      | string    | opprettetAv                   |    x     |      x      |                           |  |  cw  |  x   |   x   |  x   |      |        |                                                   |
 | M601      | string    | opprettetAvBrukerIdent        |    x     |      x      |                           |  |  cw  |  x   |   x   |  x   |      |        |                                                   |
+| M602      | timestamp | avsluttetDato                 |          |             |                           |  |  cw  |  x   |   x   |  x   |      |        |                                                   |
+| M603      | string    | avsluttetAv                   |          |             |                           |  |  cw  |  x   |   x   |  x   |      |        |                                                   |
+| M603      | string    | avsluttetAvBrukerIdent        |          |             |                           |  |  cw  |  x   |   x   |  x   |      |        |                                                   |
 | M083      | string    | dokumenttype                  |          |             | dokumenttype              |  |  x   |  x   |   x   |      |      |        |                                                   |
 | M054      | string    | dokumentstatus                |    x     |      x      | dokumentstatus            |  |  x   |  x   |   x   |      |      |        |                                                   |
 | M020      | string    | tittel                        |    x     |             |                           |  |  x   |  x   |   x   |  x   |      |        |                                                   |

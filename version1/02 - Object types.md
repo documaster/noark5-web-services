@@ -680,9 +680,9 @@ The following notation is used in the tables below:
 | M700      | string    | variantformat          |    x     |             | variantformat |  |  x   |  x   |   x   |      |      |        |                                                                    |
 | M701      | string    | format                 |    x     |             |               |  |  x   |  x   |   x   |  x   |      |        |                                                                    |
 | M702      | string    | formatDetaljer         |          |             |               |  |  x   |  x   |   x   |  x   |      |        |                                                                    |
-| M705      | string    | sjekksum               |    x     |      x      |               |  |  sm  |  x   |   x   |  x   |      |        |                                                                    |
-| M706      | string    | sjekksumAlgoritme      |    x     |      x      |               |  |  sm  |  x   |   x   |  x   |      |        |                                                                    |
-| M707      | number    | filstoerrelse          |    x     |      x      |               |  |  sm  |  x   |   x   |  x   |      |        |                                                                    |
+| M705      | string    | sjekksum               |    x     |      x      |               |  |  sm  |  x   |   x   |      |      |        |                                                                    |
+| M706      | string    | sjekksumAlgoritme      |    x     |      x      |               |  |  sm  |  x   |   x   |      |      |        |                                                                    |
+| M707      | number    | filstoerrelse          |    x     |      x      |               |  |  sm  |  x   |   x   |      |      |        |                                                                    |
 |           | boolean   | kryptertDokument       |    x     |      x      |               |  |  x   |  x   |   x   |  x   |      |        |                                                                    |
 |           | string    | filnavn                |    x     |      x      |               |  |  sm  |  x   |   x   |      |      |        |                                                                    |
 |           | string    | innholdstype           |    x     |      x      |               |  |  sm  |  x   |   x   |      |      |        |                                                                    |

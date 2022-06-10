@@ -685,6 +685,7 @@ The following notation is used in the tables below:
 | M707      | number    | filstoerrelse          |    x     |      x      |               |  |  sm  |  x   |   x   |  x   |      |        |                                                                    |
 |           | boolean   | kryptertDokument       |    x     |      x      |               |  |  x   |  x   |   x   |  x   |      |        |                                                                    |
 |           | string    | filnavn                |    x     |      x      |               |  |  sm  |  x   |   x   |      |      |        |                                                                    |
+|           | string    | innholdstype           |    x     |      x      |               |  |  sm  |  x   |   x   |      |      |        |                                                                    |
 | M218      | string    | referanseDokumentfil   |    x     |             |               |  |  x   |  x   |   x   |  x   |      |        | <p>&bull; unique identifier of a document stored in the system</p> |
 |           |           |                        |          |             |               |  |      |      |       |      |      |        |                                                                    |
 |           | ref       | refDokument            |    x     |             |               |  |      |  x   |   x   |      |  x   |   x    |                                                                    |

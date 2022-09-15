@@ -160,7 +160,8 @@ No default values are present in this list and must be configured in the system 
 | Code | Name              | Comment |
 |:-----|:------------------|:--------|
 | P    | Produksjonsformat |         |
-| A    | Arkivformat       | &nbsp;  |
+| A    | Arkivformat       |         |
+| O    | Offentlig         | &nbsp;  |
 
 ### skjerming (M500)
 

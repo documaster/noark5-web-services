@@ -148,6 +148,7 @@ The following notation is used in the tables below:
 | M300      | string    | dokumentmedium                    |    x     |      x      | dokumentmedium |  |  x   |  x   |   x   |      |      |        |                                                |
 | M107      | date      | arkivperiodeStartDato             |          |             |                |  |  x   |  x   |   x   |  x   |      |        |                                                |
 | M108      | date      | arkivperiodeSluttDato             |          |             |                |  |  x   |  x   |   x   |  x   |      |        |                                                |
+|           | date      | overlappingsperiodeSluttdato      |          |             |                |  |  X   |  x   |   x   |  x   |      |        |                                                |
 | M500      | string    | skjerming                         |          |             | skjerming      |  |  x   |  x   |   x   |      |      |        |                                                |
 |           |           |                                   |          |             |                |  |      |      |       |      |      |        |                                                |
 |           | ref       | refArkiv                          |    x     |             |                |  |      |  x   |   x   |      |  x   |   x    |                                                |
@@ -155,6 +156,8 @@ The following notation is used in the tables below:
 |           | ref       | refSekundaerKlassifikasjonssystem |          |             |                |  |      |      |   x   |      |  x   |   x    |                                                |
 |           | ref       | refMappe                          |          |             |                |  |      |      |   x   |      |  x   |   x    | <p>&bull; references **AbstraktMappe**</p>     |
 |           | ref       | refRegistrering                   |          |             |                |  |      |      |   x   |      |  x   |   x    | <p>&bull; references **Basisregistrering**</p> |
+|           | ref       | refArkivdelForloeper              |          |             |                |  |      |      |   x   |      |  x   |   x    | <p>&bull; references **Arkivdel**</p>          |
+|           | ref       | refArkivdelArvtaker               |          |             |                |  |      |      |   x   |      |  x   |   x    | <p>&bull; references **Arkivdel**</p>          |
 
 ## Classification
 

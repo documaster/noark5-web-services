@@ -641,6 +641,37 @@ Content-Type: application/json
   - **values**
     - facet value: number of index documents with that value
 
+## **set**
+
+Sets the document text of a Dokumentversjon.
+
+**Request**
+
+``` text
+POST /rms/api/public/noark5/v1/full-text/set HTTP/1.1
+Authorization: Bearer ACCESS_TOKEN
+Content-Type: application/json
+
+{
+  "dokumentversjonId": string,
+  "tekst": string
+}
+```
+
+###### Details
+
+- **dokumentversjonId**
+  - the ID of the Dokumentversjon to set the text for
+- **tekst** (optional)
+  - the document text to set
+  - if not specified, the text will be set to null
+
+**Response**
+
+``` text
+200 OK
+```
+
 # Code list management web services
 
 Address:

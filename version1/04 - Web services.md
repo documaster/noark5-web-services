@@ -364,6 +364,12 @@ Content-Type: application/json
         - field ID placeholder which identifies a business-specific metadata field
         - **values**
           - array of zero or more values to write to the specified business-specific metadata field
+  - we have screening inheritance logic as part of the create endpoints for *Dokument*, *Registrering* and *Mappe* types where the screening of the object is determined by prioritized rules:
+    - any user input (either valid `skjerming` code or null, meaning no screening)
+    - direct parent screening if any
+    - primary klass screening if any
+    - secondary klass screening if there is exactly one secondary klass with screening
+    - default screening if such is present in the system
 
 **WARNING:** The **virksomhetsspesifikkeMetadata** field describes the desired state of the business-specific metadata for the object. This implies that:
 - groups, fields, and values included in **virksomhetsspesifikkeMetadata** will be added to the object;

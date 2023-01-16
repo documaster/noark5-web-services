@@ -1588,6 +1588,26 @@ Content-type: application/json
 - **objectId**
   - the object ID for which to fetch existing permissions
 
+### Delete access group by ID
+
+Deletes an access group **asynchronously** by its identifier. 
+
+**Request**
+
+```text
+DELETE /rms/api/public/noark5/v1/access-group/{id}
+Authorization: Bearer ACCESS_TOKEN
+```
+
+###### Details
+
+- **id**
+  - the identifier of the access group to delete
+
+**Response**
+
+202 Accepted
+
 ## Managing entity permissions
 
 This set of endpoints allows you to manage the explicit permissions on the specified objects:

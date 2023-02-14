@@ -551,6 +551,12 @@ Content-Type: application/json
 {
   "doctype": string,
   "query": string,
+  "filters: {
+    string: [string],
+    ...
+  }
+  "publicUse": boolean,
+  "expand": [string],
   "offset: number,
   "limit": number
 }
@@ -574,6 +580,27 @@ Content-Type: application/json
     - Noekkelord: verdi
     - Arkivdel: tittel
   - other search fields may be returned too; clients must not make an assumption about the exact set of fields returned by this endpoint
+- **filters**
+  - field name: one or more strings to match
+    - the strings are ORed
+  - return only results that have a match for every specified field
+  - can be used to filter on facets
+- **publicUse** (optional)
+  - omits screened fields from the response
+  - intended for public use when fields containing personal or sensitive information should not be returned
+  - takes effect only if skjerming has been specified on the object or any of its parent objects
+  - affects the entities returned in the **expand** field
+  - defaults to true
+- **expand** (optional)
+  - expands the found entities in their entirety, as if returned by the **query** endpoint
+  - accepts the following entity types:
+    - Klasse
+    - AbstraktMappe
+    - AbstraktRegistrering
+    - Dokument
+    - Dokumentversjon
+    - Arkivdel
+    - Korrespondansepart
 - **offset** (optional)
   - offset of the first result to retrieve
   - defaults to *0*
@@ -597,6 +624,11 @@ Content-Type: application/json
       "highlights": {
         string: [string],
         ...
+      },
+      "expand": {
+        string: [
+          { ... },
+        ]
       }
     },
     ...
@@ -625,6 +657,9 @@ Content-Type: application/json
     - matching field: highlighted text snippets from that field
     - the beginning of a highlight is indicated by the string *|=hlstart=|*
     - the end of a highlight is indicated by the string *|=hlend=|*
+  - **expand**
+    - key - the type of the entity as provided in the request
+    - value - array with the expanded entities of said type
 - **facets**
   - **field**
     - name of a facet field

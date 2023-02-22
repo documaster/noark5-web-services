@@ -179,7 +179,8 @@ No default values are present in this list and must be configured in the system 
 | BE   | Besvart med e-post    |         |
 | TLF  | Besvart på telefon    |         |
 | TE   | Tatt til etterretning |         |
-| TO   | Tatt til orientering  | &nbsp;  |
+| TO   | Tatt til orientering  |         |
+| SA   | Sak avsluttet         | &nbsp;  |
 
 ### administrativEnhet (M583)
 

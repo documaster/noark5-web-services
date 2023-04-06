@@ -1237,6 +1237,85 @@ Content-type: application/json
 - **currentParent** (optional)
   - returned for revisions of type MOVE
 
+## **access-log**
+
+Load paginated list of access log entries.
+
+**Request**
+
+``` text
+POST /rms/api/public/noark5/v1/logs/access-log HTTP/1.1
+Authorization: Bearer ACCESS_TOKEN
+Content-Type: application/json
+
+{
+  "createdDateFrom": timestamp,
+  "createdDateTo": timestamp,
+  "userName": string,
+  "objectType": string,
+  "objectUUIDs": [string, ...],
+  "offset": number,
+  "limit": number
+}
+```
+
+###### Details
+
+- **createdDateFrom** (optional)
+  - only return access log entries starting from this datetime (inclusive)
+- **createdDateTo** (optional)
+  - only return access log entries ending at this datetime (inclusive)
+- **userName** (optional)
+  - the username to filter by
+- **objectType** (conditionally optional)
+  - the object type to filter by \[Saksmappe, Mappe, Moetemappe, AbstraktMappe, Journalpost, Basisregistrering, Moeteregistrering,
+    Arkivnotat, AbstraktRegistrering, Dokument, Dokumentversjon\]
+  - must be provided if objectUUIDs is
+- **objectUUIDs** (conditionally optional)
+  - the list of object system ids to filter by
+  - must be provided if objectType is
+- **offset** (optional)
+  - offset of first result
+  - defaults to 0
+  - must be greater than or equal to 0
+- **limit** (optional)
+  - maximum number of results to retrieve
+  - must be greater than 0 and less than or equal to 100
+  - defaults to 10
+
+**Response**
+
+``` text
+Content-type: application/json
+
+{
+  "results": [
+    {
+      "createdDate": timestamp,
+      "userName": string,
+      "objectType": string,
+      "objectUUID": string,
+      "version": number
+    },
+    ...
+  ],
+  "hasMore": boolean
+}
+```
+
+###### Details
+
+- **createdDate**
+  - the date of creating the object
+- **userName**
+  - the username accessing the object
+- **objectType**
+  - the type of the object
+- **objectUUID**
+  - the system id of the object
+- **version**
+  - the version of the object
+
 # Bulk operations
 
 Address:

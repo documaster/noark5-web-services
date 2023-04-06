@@ -1316,6 +1316,73 @@ Content-type: application/json
 - **version**
   - the version of the object
 
+## **download-log**
+
+Load paginated list of Download log entries.
+
+**Request**
+
+``` text
+POST /rms/api/public/noark5/v1/logs/download-log HTTP/1.1
+Authorization: Bearer ACCESS_TOKEN
+Content-Type: application/json
+
+{
+  "dokumentversjonUUIDs": [string, ...],
+  "createdDateFrom": timestamp,
+  "createdDateTo": timestamp,
+  "userName": string,
+  "offset": number,
+  "limit": number
+}
+```
+
+###### Details
+
+- **dokumentversjonUUIDs** (optional)
+  - the list of dokumentversjon system ids to filter by
+- **createdDateFrom** (optional)
+  - only return access log entries starting from this datetime (inclusive)
+- **createdDateTo** (optional)
+  - only return access log entries ending at this datetime (inclusive)
+- **userName** (optional)
+  - the username to filter by
+- **offset** (optional)
+  - offset of first result
+  - defaults to 0
+  - must be greater than or equal to 0
+- **limit** (optional)
+  - maximum number of results to retrieve
+  - must be greater than 0 and less than or equal to 100
+  - defaults to 10
+
+**Response**
+
+``` text
+Content-type: application/json
+
+{
+  "results": [
+    {
+      "createdDate": timestamp,
+      "userName": string,
+      "dokumentversjonUUID": string
+    },
+    ...
+  ],
+  "hasMore": boolean
+}
+```
+
+###### Details
+
+- **createdDate**
+  - the date of creating the dokumentversjon
+- **userName**
+  - the username accessing the dokumentversjon
+- **dokumentversjonUUID**
+  - the system id of the dokumentversjon
+
 # Bulk operations
 
 Address:

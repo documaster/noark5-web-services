@@ -47,6 +47,14 @@ No default values are present in this list and must be configured in the system 
 | P    | Unntatt prosesstyring      |         |
 | F    | Ferdig fra saksbehandler   | &nbsp;  |
 
+### mappestatus
+
+| Code | Name | Comment |
+|:-----|:-----|:--------|
+|      |      | &nbsp;  |
+
+No default values are present in this list and must be configured in the system before use.
+
 ### journalstatus (M053)
 
 | Code | Name                                            | Comment |

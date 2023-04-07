@@ -1120,6 +1120,269 @@ Both **groupId** and **fieldId** are strings comprised of lower-case letters, di
 
 No content will be returned upon successful completion.
 
+# Logs services
+
+Address:
+
+```
+https://{server}:{port}/rms/api/public/noark5/v1/logs
+```
+
+## **change-log**
+
+Load paginated list of change log entries.
+
+**Request**
+
+``` text
+POST /rms/api/public/noark5/v1/logs/change-log HTTP/1.1
+Authorization: Bearer ACCESS_TOKEN
+Content-Type: application/json
+
+{
+  "type": string,
+  "id": string,
+  "offset": number,
+  "limit": number
+}
+```
+
+###### Details
+
+- **type**
+  - object type \[Saksmappe, Mappe, Moetemappe, AbstraktMappe, Journalpost, Basisregistrering, Moeteregistrering, Arkivnotat,
+    AbstraktRegistrering, Dokument\]
+- **id**
+  - the ID of the object
+- **offset** (optional)
+  - offset of first result
+  - defaults to 0
+  - must be greater than or equal to 0
+- **limit** (optional)
+  - maximum number of results to retrieve
+  - must be greater than 0 and less than or equal to 100
+  - defaults to 10
+
+**Response**
+
+``` text
+Content-type: application/json
+
+{
+  "results": [
+    {
+      "id": string,
+      "type": string,
+      "revisionId": string,
+      "revisionType": string,
+      "modifiedDate": timestamp,
+      "modifiedBy": string,
+      "modifiedField": string,
+      "modifiedFieldType": string,
+      "newValue": {
+        string: string|number|date|boolean|null,
+        ...
+      },
+      "oldValue": {
+        string: string|number|date|boolean|null,
+        ...
+      },
+      "removedValue": {
+        string: string|number|date|boolean|null,
+        ...
+      },
+      "previousParent": {
+        string: string|number|date|boolean|null,
+        ...
+      },
+      "currentParent": {
+        string: string|number|date|boolean|null,
+        ...
+      },
+    },
+    ...
+  ],
+  "total": number 
+}
+```
+
+###### Details
+
+- **type**
+  - the type of the object
+- **id**
+  - the ID of the object
+- **revisionId**
+  - the ID of the revision
+- **revisionType**
+  - the type of the revision
+- **modifiedDate**
+  - the date of modification
+- **modifiedBy**
+  - the user who has modified the object
+- **modifiedField** (optional)
+  - the field which has been modified
+  - returned for revisions of type UPDATE, LINK, UNLINK
+- **modifiedFieldType** (optional)
+  - the type of the field which has been modified
+  - returned for revisions of type UPDATE
+- **newValue** (optional)
+  - returned for revisions of types CREATE, UPDATE, LINK
+- **oldValue** (optional)
+  - returned for revisions of type UPDATE, DELETE
+- **removedValue** (optional)
+  - returned for revisions of types LINK, UNLINK
+- **previousParent** (optional)
+  - returned for revisions of type MOVE
+- **currentParent** (optional)
+  - returned for revisions of type MOVE
+
+## **access-log**
+
+Load paginated list of access log entries.
+
+**Request**
+
+``` text
+POST /rms/api/public/noark5/v1/logs/access-log HTTP/1.1
+Authorization: Bearer ACCESS_TOKEN
+Content-Type: application/json
+
+{
+  "createdDateFrom": timestamp,
+  "createdDateTo": timestamp,
+  "userName": string,
+  "objectType": string,
+  "objectUUIDs": [string, ...],
+  "offset": number,
+  "limit": number
+}
+```
+
+###### Details
+
+- **createdDateFrom** (optional)
+  - only return access log entries starting from this datetime (inclusive)
+- **createdDateTo** (optional)
+  - only return access log entries ending at this datetime (inclusive)
+- **userName** (optional)
+  - the username to filter by
+- **objectType** (conditionally optional)
+  - the object type to filter by \[Saksmappe, Mappe, Moetemappe, AbstraktMappe, Journalpost, Basisregistrering, Moeteregistrering,
+    Arkivnotat, AbstraktRegistrering, Dokument, Dokumentversjon\]
+  - must be provided if objectUUIDs is
+- **objectUUIDs** (conditionally optional)
+  - the list of object system ids to filter by
+  - must be provided if objectType is
+- **offset** (optional)
+  - offset of first result
+  - defaults to 0
+  - must be greater than or equal to 0
+- **limit** (optional)
+  - maximum number of results to retrieve
+  - must be greater than 0 and less than or equal to 100
+  - defaults to 10
+
+**Response**
+
+``` text
+Content-type: application/json
+
+{
+  "results": [
+    {
+      "createdDate": timestamp,
+      "userName": string,
+      "objectType": string,
+      "objectUUID": string,
+      "version": number
+    },
+    ...
+  ],
+  "hasMore": boolean
+}
+```
+
+###### Details
+
+- **createdDate**
+  - the date of creating the object
+- **userName**
+  - the username accessing the object
+- **objectType**
+  - the type of the object
+- **objectUUID**
+  - the system id of the object
+- **version**
+  - the version of the object
+
+## **download-log**
+
+Load paginated list of Download log entries.
+
+**Request**
+
+``` text
+POST /rms/api/public/noark5/v1/logs/download-log HTTP/1.1
+Authorization: Bearer ACCESS_TOKEN
+Content-Type: application/json
+
+{
+  "dokumentversjonUUIDs": [string, ...],
+  "createdDateFrom": timestamp,
+  "createdDateTo": timestamp,
+  "userName": string,
+  "offset": number,
+  "limit": number
+}
+```
+
+###### Details
+
+- **dokumentversjonUUIDs** (optional)
+  - the list of dokumentversjon system ids to filter by
+- **createdDateFrom** (optional)
+  - only return access log entries starting from this datetime (inclusive)
+- **createdDateTo** (optional)
+  - only return access log entries ending at this datetime (inclusive)
+- **userName** (optional)
+  - the username to filter by
+- **offset** (optional)
+  - offset of first result
+  - defaults to 0
+  - must be greater than or equal to 0
+- **limit** (optional)
+  - maximum number of results to retrieve
+  - must be greater than 0 and less than or equal to 100
+  - defaults to 10
+
+**Response**
+
+``` text
+Content-type: application/json
+
+{
+  "results": [
+    {
+      "createdDate": timestamp,
+      "userName": string,
+      "dokumentversjonUUID": string
+    },
+    ...
+  ],
+  "hasMore": boolean
+}
+```
+
+###### Details
+
+- **createdDate**
+  - the date of creating the dokumentversjon
+- **userName**
+  - the username accessing the dokumentversjon
+- **dokumentversjonUUID**
+  - the system id of the dokumentversjon
+
 # Bulk operations
 
 Address:

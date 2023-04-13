@@ -650,6 +650,7 @@ The following notation is used in the tables below:
 | M307      | string    | saksbehandler                 |          |             |                        |  |  x   |  x   |   x   |  x   |      |        |                                                   |
 | M305      | string    | administrativEnhet            |          |             | administrativEnhet     |  |  x   |  x   |   x   |      |      |        |                                                   |
 |           | string    | ekspederingskanal             |          |             | ekspederingskanal      |  |  x   |  x   |   x   |      |      |        |                                                   |
+|           | boolean   | skjermEInnsyn                 |          |    false    |                        |  |  x   |  x   |   x   |      |      |        |                                                   |
 |           |           |                               |          |             |                        |  |      |      |       |      |      |        |                                                   |
 |           | object    | virksomhetsspesifikkeMetadata |          |             |                        |  |  x   |  x   |       |      |      |        |                                                   |
 |           |           |                               |          |             |                        |  |      |      |       |      |      |        |                                                   |

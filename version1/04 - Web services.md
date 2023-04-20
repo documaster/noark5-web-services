@@ -1268,8 +1268,8 @@ Content-Type: application/json
 - **userName** (optional)
   - the username to filter by
 - **objectType** (conditionally optional)
-  - the object type to filter by \[Saksmappe, Mappe, Moetemappe, AbstraktMappe, Journalpost, Basisregistrering, Moeteregistrering,
-    Arkivnotat, AbstraktRegistrering, Dokument, Dokumentversjon\]
+  - the object type to filter by \[Saksmappe, Mappe, Moetemappe, Journalpost, Basisregistrering, Moeteregistrering,
+    Arkivnotat, Dokument, Dokumentversjon\]
   - must be provided if objectUUIDs is
 - **objectUUIDs** (conditionally optional)
   - the list of object system ids to filter by

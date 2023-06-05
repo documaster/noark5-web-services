@@ -1397,7 +1397,7 @@ Closes a single entity and its underlying objects recursively and asynchronously
 **Request**
 
 ``` text
-GET /rms/api/public/noark5/v1/bulk/close HTTP/1.1
+POST /rms/api/public/noark5/v1/bulk/close HTTP/1.1
 Authorization: Bearer ACCESS_TOKEN
 Content-Type: application/json
 
@@ -1425,7 +1425,7 @@ Opens a single entity and its underlying objects recursively and asynchronously:
 **Request**
 
 ``` text
-GET /rms/api/public/noark5/v1/bulk/open HTTP/1.1
+POST /rms/api/public/noark5/v1/bulk/open HTTP/1.1
 Authorization: Bearer ACCESS_TOKEN
 Content-Type: application/json
 
@@ -1441,6 +1441,42 @@ Content-Type: application/json
   - object type \[Arkiv, Arkivdel, AbstraktMappe, AbstraktRegistrering, DokumentBeskrivelse, Klassifikasjonssystem, Klasse\]
 - **id**
   - the ID of the object
+
+**Response**
+
+202 Accepted
+
+## **delete**
+
+Deletes a single entity and its underlying objects recursively and asynchronously: the web service returns immediately after checking that the entity exists and performs the operation asynchronously.
+
+**Request**
+
+``` text
+POST /rms/api/public/noark5/v1/bulk/delete HTTP/1.1
+Authorization: Bearer ACCESS_TOKEN
+Content-Type: application/json
+
+{
+  "type": string,
+  "id": string,
+  "version": integer,
+  "deleteObjectsLinkedToPrecedents": boolean
+}
+```
+
+###### Details
+
+- **type**
+  - object type \[Arkiv, Arkivdel, AbstraktMappe, Mappe, Saksmappe, Moetemappe, AbstraktRegistrering, Journalpost, Basisregistrering, Arkivnotat, Moeteregistrering\]
+- **id**
+  - the ID of the object
+- **version** (optional)
+  - the version of the object at the time of deletion
+  - if specified and a newer version of the object exists, 409 Conflict will be returned
+- **deleteObjectsLinkedToPrecedents** (optional)
+  - default: false
+  - whether to ignore (false) or delete (true) objects linked to precedents
 
 **Response**
 

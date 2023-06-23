@@ -1143,6 +1143,8 @@ Content-Type: application/json
 {
   "type": string,
   "id": string,
+  "includeChildChanges": boolean,
+  "nestChildChanges": boolean,
   "offset": number,
   "limit": number
 }
@@ -1151,10 +1153,18 @@ Content-Type: application/json
 ###### Details
 
 - **type**
-  - object type \[Saksmappe, Mappe, Moetemappe, AbstraktMappe, Journalpost, Basisregistrering, Moeteregistrering, Arkivnotat,
-    AbstraktRegistrering, Dokument\]
+  - object type \[Arkiv, Arkivskaper, Arkivdel, Klassifikasjonssystem, Klasse, Saksmappe, Mappe, Moetemappe, Moetedeltaker, AbstraktMappe, Journalpost, Basisregistrering, Moeteregistrering, Arkivnotat,
+    AbstraktRegistrering, Dokument, Presedens, Korrespondansepart, Sakspart\]
+  - optional, but recommended
 - **id**
-  - the ID of the object
+  - the ID or system ID of the object
+  - required
+- **includeChildChanges**
+  - if true, marker events for creates/moves/deletes will be returned for supported entities
+  - defaults to true
+- **nestChildChanges**
+  - if true, child change events will be returned for supported entities
+  - defaults to true
 - **offset** (optional)
   - offset of first result
   - defaults to 0
@@ -1173,11 +1183,13 @@ Content-type: application/json
   "results": [
     {
       "id": string,
+      "systemId": string,
       "type": string,
       "revisionId": string,
       "revisionType": string,
       "modifiedDate": timestamp,
       "modifiedBy": string,
+      "modifiedByUserId": string,
       "modifiedField": string,
       "modifiedFieldType": string,
       "newValue": {
@@ -1213,6 +1225,8 @@ Content-type: application/json
   - the type of the object
 - **id**
   - the ID of the object
+- **systemId**
+  - the system ID of the object
 - **revisionId**
   - the ID of the revision
 - **revisionType**
@@ -1221,6 +1235,8 @@ Content-type: application/json
   - the date of modification
 - **modifiedBy**
   - the user who has modified the object
+- **modifiedByUserId**
+  - the ID of the user who modified the object
 - **modifiedField** (optional)
   - the field which has been modified
   - returned for revisions of type UPDATE, LINK, UNLINK
@@ -1268,13 +1284,13 @@ Content-Type: application/json
   - only return access log entries ending at this datetime (inclusive)
 - **userName** (optional)
   - the username to filter by
-- **objectType** (conditionally optional)
+- **objectType**
   - the object type to filter by \[Saksmappe, Mappe, Moetemappe, Journalpost, Basisregistrering, Moeteregistrering,
     Arkivnotat, Dokument, Dokumentversjon\]
-  - must be provided if objectUUIDs is
-- **objectUUIDs** (conditionally optional)
+  - optional, but recommended when objectUUIDs is specified
+- **objectUUIDs**
   - the list of object system ids to filter by
-  - must be provided if objectType is
+  - optional
 - **offset** (optional)
   - offset of first result
   - defaults to 0
@@ -1294,6 +1310,7 @@ Content-type: application/json
     {
       "createdDate": timestamp,
       "userName": string,
+      "userId": string,
       "objectType": string,
       "objectUUID": string,
       "version": number
@@ -1310,6 +1327,8 @@ Content-type: application/json
   - the date of creating the object
 - **userName**
   - the username accessing the object
+- **userId**
+  - the ID of the user accessing the object
 - **objectType**
   - the type of the object
 - **objectUUID**
@@ -1367,6 +1386,7 @@ Content-type: application/json
     {
       "createdDate": timestamp,
       "userName": string,
+      "userId": string,
       "dokumentversjonUUID": string
     },
     ...
@@ -1381,6 +1401,8 @@ Content-type: application/json
   - the date of creating the dokumentversjon
 - **userName**
   - the username accessing the dokumentversjon
+- **userId**
+  - the ID of the user accessing the object
 - **dokumentversjonUUID**
   - the system id of the dokumentversjon
 

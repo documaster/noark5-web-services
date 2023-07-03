@@ -507,13 +507,14 @@ Downloads the file with the specified ID. If the file is not registered in a rec
 **Request**
 
 ``` text
-GET /rms/api/public/noark5/v1/download?id=DOCUMENT_ID HTTP/1.1
+GET /rms/api/public/noark5/v1/download?id=DOCUMENT_ID&type=TYPE HTTP/1.1
 Authorization: Bearer ACCESS_TOKEN
 ```
 
 ###### Details
 
-- Downloads the file with the specified document ID
+- Downloads the file with the specified document ID and type
+- "type" is optional and accepts two values - original and lightpdf; if omitted, the original file is downloaded
 
 **Response**
 

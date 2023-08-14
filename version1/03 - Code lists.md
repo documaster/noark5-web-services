@@ -49,6 +49,8 @@ No default values are present in this list and must be configured in the system 
 
 ### mappestatus
 
+_Since: 3.6.1_
+
 | Code | Name | Comment |
 |:-----|:-----|:--------|
 |      |      | &nbsp;  |
@@ -165,11 +167,11 @@ No default values are present in this list and must be configured in the system 
 
 ### variantformat (M700)
 
-| Code | Name              | Comment |
-|:-----|:------------------|:--------|
-| P    | Produksjonsformat |         |
-| A    | Arkivformat       |         |
-| O    | Offentlig         | &nbsp;  |
+| Code | Name              | Comment        |
+|:-----|:------------------|:---------------|
+| P    | Produksjonsformat |                |
+| A    | Arkivformat       |                |
+| O    | Offentlig         | _Since_3.4.0_  |
 
 ### skjerming (M500)
 
@@ -181,14 +183,14 @@ No default values are present in this list and must be configured in the system 
 
 ### avskrivningsmaate (M619)
 
-| Code | Name                  | Comment |
-|:-----|:----------------------|:--------|
-| BU   | Besvart med brev      |         |
-| BE   | Besvart med e-post    |         |
-| TLF  | Besvart på telefon    |         |
-| TE   | Tatt til etterretning |         |
-| TO   | Tatt til orientering  |         |
-| SA   | Sak avsluttet         | &nbsp;  |
+| Code | Name                  | Comment        |
+|:-----|:----------------------|:---------------|
+| BU   | Besvart med brev      |                |
+| BE   | Besvart med e-post    |                |
+| TLF  | Besvart på telefon    |                |
+| TE   | Tatt til etterretning |                |
+| TO   | Tatt til orientering  |                |
+| SA   | Sak avsluttet         | _Since: 3.5.0_ |
 
 ### administrativEnhet (M583)
 

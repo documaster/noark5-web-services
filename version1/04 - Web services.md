@@ -364,7 +364,7 @@ Content-Type: application/json
         - field ID placeholder which identifies a business-specific metadata field
         - **values**
           - array of zero or more values to write to the specified business-specific metadata field
-  - we have screening inheritance logic as part of the create endpoints for *Dokument*, *Registrering* and *Mappe* types where the screening of the object is determined by prioritized rules:
+  - since 3.5.1 we have screening inheritance logic as part of the create endpoints for *Dokument*, *Registrering* and *Mappe* types where the screening of the object is determined by prioritized rules:
     - any user input (either valid `skjerming` code or null, meaning no screening)
     - direct parent screening if any
     - primary klass screening if any
@@ -516,6 +516,8 @@ Authorization: Bearer ACCESS_TOKEN
 - Downloads the file with the specified document ID and type
 - "type" is optional and accepts two values - original and lightpdf; if omitted, the original file is downloaded
 
+_Light PDFs can be downloaded since 3.7.0._
+
 **Response**
 
 ``` text
@@ -592,12 +594,14 @@ Content-Type: application/json
     - the strings are ORed
   - return only results that have a match for every specified field
   - can be used to filter on facets
+  - since 3.5.1
 - **publicUse** (optional)
   - omits screened fields from the response
   - intended for public use when fields containing personal or sensitive information should not be returned
   - takes effect only if skjerming has been specified on the object or any of its parent objects
   - affects the entities returned in the **expand** field
   - defaults to true
+  - since 3.5.1
 - **expand** (optional)
   - expands the found entities in their entirety, as if returned by the **query** endpoint
   - accepts the following entity types:
@@ -608,6 +612,7 @@ Content-Type: application/json
     - Dokumentversjon
     - Arkivdel
     - Korrespondansepart
+  - since 3.5.1
 - **offset** (optional)
   - offset of the first result to retrieve
   - defaults to *0*
@@ -684,6 +689,8 @@ Content-Type: application/json
     - facet value: number of index documents with that value
 
 ## **set**
+
+_Since 3.3.0_
 
 Sets the document text of a Dokumentversjon.
 
@@ -1131,6 +1138,8 @@ https://{server}:{port}/rms/api/public/noark5/v1/logs
 
 ## **change-log**
 
+_Since: 3.6.0_
+
 Load paginated list of change log entries.
 
 **Request**
@@ -1153,18 +1162,20 @@ Content-Type: application/json
 ###### Details
 
 - **type**
-  - object type \[Arkiv, Arkivskaper, Arkivdel, Klassifikasjonssystem, Klasse, Saksmappe, Mappe, Moetemappe, Moetedeltaker, AbstraktMappe, Journalpost, Basisregistrering, Moeteregistrering, Arkivnotat,
-    AbstraktRegistrering, Dokument, Presedens, Korrespondansepart, Sakspart\]
-  - optional, but recommended
+  - object type \[Arkiv, Arkivskaper, Arkivdel, Klassifikasjonssystem, Klasse, Saksmappe, Mappe, Moetemappe, Moetedeltaker, AbstraktMappe, Journalpost, Basisregistrering, Moeteregistrering, Arkivnotat, AbstraktRegistrering, Dokument, Presedens, Korrespondansepart, Sakspart\]
+  - optional, but recommended since 3.8.0; required before that
+  - note that Arkiv, Arkivskaper, Arkivdel, Klassifikasjonssystem, Klasse, Moetedeltaker, Presedens, Korrespondansepart, Sakspart are supported since 3.8.0
 - **id**
   - the ID or system ID of the object
   - required
 - **includeChildChanges**
   - if true, marker events for creates/moves/deletes will be returned for supported entities
   - defaults to true
+  - since 3.8.0
 - **nestChildChanges**
   - if true, child change events will be returned for supported entities
   - defaults to true
+  - since 3.8.0
 - **offset** (optional)
   - offset of first result
   - defaults to 0
@@ -1227,6 +1238,7 @@ Content-type: application/json
   - the ID of the object
 - **systemId**
   - the system ID of the object
+  - since 3.8.0
 - **revisionId**
   - the ID of the revision
 - **revisionType**
@@ -1237,6 +1249,7 @@ Content-type: application/json
   - the user who has modified the object
 - **modifiedByUserId**
   - the ID of the user who modified the object
+  - since 3.8.0
 - **modifiedField** (optional)
   - the field which has been modified
   - returned for revisions of type UPDATE, LINK, UNLINK
@@ -1255,6 +1268,8 @@ Content-type: application/json
   - returned for revisions of type MOVE
 
 ## **access-log**
+
+_Since 3.6.0_
 
 Load paginated list of access log entries.
 
@@ -1287,7 +1302,7 @@ Content-Type: application/json
 - **objectType**
   - the object type to filter by \[Saksmappe, Mappe, Moetemappe, Journalpost, Basisregistrering, Moeteregistrering,
     Arkivnotat, Dokument, Dokumentversjon\]
-  - optional, but recommended when objectUUIDs is specified
+  - optional, but recommended when objectUUIDs is specified since 3.7.0; required before that
 - **objectUUIDs**
   - the list of object system ids to filter by
   - optional
@@ -1329,6 +1344,7 @@ Content-type: application/json
   - the username accessing the object
 - **userId**
   - the ID of the user accessing the object
+  - since 3.7.0
 - **objectType**
   - the type of the object
 - **objectUUID**
@@ -1337,6 +1353,8 @@ Content-type: application/json
   - the version of the object
 
 ## **download-log**
+
+_Since 3.6.0_
 
 Load paginated list of Download log entries.
 
@@ -1403,6 +1421,7 @@ Content-type: application/json
   - the username accessing the dokumentversjon
 - **userId**
   - the ID of the user accessing the object
+  - since 3.7.0
 - **dokumentversjonUUID**
   - the system id of the dokumentversjon
 
@@ -1470,6 +1489,8 @@ Content-Type: application/json
 202 Accepted
 
 ## **delete**
+
+_Since 3.7.0_
 
 Deletes a single entity and its underlying objects recursively and asynchronously: the web service returns immediately after checking that the entity exists and performs the operation asynchronously.
 
@@ -1952,6 +1973,8 @@ Content-type: application/json
   - the object ID for which to fetch existing permissions
 
 ### Delete access group by ID
+
+_Since 3.5.1_
 
 Deletes an access group **asynchronously** by its identifier. 
 

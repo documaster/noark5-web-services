@@ -1821,6 +1821,102 @@ Content-type: application/json
 - **servicePermissions**
   - the group service permissions
 
+### Get all permissions assigned to access group
+
+_Since 3.9.0_
+
+Retrieves a list of all objects with their respective explicit permissions for a certain access group
+
+**Request**
+
+```text
+GET /access-group/{id}/permissions?offset=INTEGER&limit=INTEGER
+Accept: application/json
+Authorization: Bearer {token}
+```
+
+###### Details
+
+- **id**
+  - the identifier of the access group to fetch
+- **offset (optional)**
+  - return objects from the specified offset
+- **limit (optional)**
+  - return n number of objects per page (maximum 100 and 10 by default)  
+
+**Response**
+
+```text
+200 OK
+Content-type: application/json
+{
+"results": [
+         {
+             "accessGroupId": integer,
+             "explicitPermissions": [string],
+             "discriminator": string,
+             "objectId": integer
+         },
+         {
+             "accessGroupId": integer,
+             "explicitPermissions": [string],
+             "discriminator": string,
+             "listType": string
+         },
+         {
+             "accessGroupId": integer,
+             "explicitPermissions": [string],
+             "discriminator": string,
+             "listType": string,
+             "code": string
+         }
+     ],
+     "hasMore": boolean
+}
+```
+
+###### Details
+
+- **results**
+  - contains the (potentially empty) objects with additional metadata and explicit permissions for the specified group
+  - at most 100 objets per page can be retrieved
+- **accessGroupId**
+  - the id of the requested access group
+- **explicitPermissions**
+  - array of the assigned explicit permissions
+- **objectId**
+  - id of the object if the object is not code list or code list value
+- **discriminator**
+  - discriminator value that can be used to distinguish the object during deserialization
+    - GlobaleRettigheter
+    - AbstraktMappe
+    - Arkiv
+    - Arkivdel
+    - Klassifikasjonssystem
+    - Klasse
+    - ListeRegister
+    - VsmRegister
+    - PresedensRegister
+    - skjerming
+    - skjermingVerdi
+    - administrativEnhet
+    - administrativEnhetVerdi
+    - dokumenttype
+    - dokumenttypeVerdi
+    - mappetype
+    - mappetypeVerdi
+- **listType**
+  - if the object is code list, this will contain the type of the list
+  - will be the same as the discriminator field
+    - administrativEnhet
+    - skjerming
+    - dokumenttype
+    - mappetype
+- **code**
+  - if the object is code list value, this will be the code for that list value
+- **hasMore**
+  - indicates if there are more results matching the query than those in the current page  
+
 ### Create an access group
 
 Creates an access group

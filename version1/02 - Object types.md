@@ -650,6 +650,7 @@ _Since: 3.6.1_
 | M411      | string    | telefonnummer                 |          |             |                        |  |  x   |  x   |   x   |  x   |      |        |                                                   |
 | M412      | string    | kontaktperson                 |          |             |                        |  |  x   |  x   |   x   |  x   |      |        |                                                   |
 | M307      | string    | saksbehandler                 |          |             |                        |  |  x   |  x   |   x   |  x   |      |        |                                                   |
+|           | boolean   | erPerson                      |          |             |                        |  |  x   |  x   |   x   |  x   |      |        |                                                   |
 | M305      | string    | administrativEnhet            |          |             | administrativEnhet     |  |  x   |  x   |   x   |      |      |        |                                                   |
 |           | string    | ekspederingskanal             |          |             | ekspederingskanal      |  |  x   |  x   |   x   |      |      |        |                                                   |
 |           | boolean   | skjermEInnsyn                 |          |    false    |                        |  |  x   |  x   |   x   |      |      |        | _Since 3.6.1_                                     |

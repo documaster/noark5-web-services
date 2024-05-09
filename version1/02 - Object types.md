@@ -336,6 +336,7 @@ The following notation is used in the tables below:
 | M410      | string    | epostadresse                  |          |             |           |  |  x   |  x   |   x   |  x   |      |        |                                            |
 | M411      | string    | telefonnummer                 |          |             |           |  |  x   |  x   |   x   |  x   |      |        |                                            |
 | M412      | string    | kontaktperson                 |          |             |           |  |  x   |  x   |   x   |  x   |      |        |                                            |
+|           | boolean   | erSkjermet                    |    x     |      x      |           |  |  x   |  x   |   x   |  x   |      |        | _Since 3.10.0_                             |
 |           |           |                               |          |             |           |  |      |      |       |      |      |        |                                            |
 | M711      | object    | virksomhetsspesifikkeMetadata |          |             |           |  |  x   |  x   |       |      |      |        |                                            |
 |           |           |                               |          |             |           |  |      |      |       |      |      |        |                                            |

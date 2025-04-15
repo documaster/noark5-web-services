@@ -137,6 +137,7 @@ Content-Type: application/json
   - defaults to 0
 - **limit**
   - maximum number of results to retrieve
+  - maximum value of 1000
 - **query** (optional)
   - an expression written in the web services query language defined in this specification
   - defaults to an empty string, i.e. search for all objects of the specified type
